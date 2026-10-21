@@ -1,0 +1,79 @@
+{
+  "schema": "taskmarket-public-source-lock.v1",
+  "packages": {
+    "1.13.2": {
+      "url": "https://registry.npmjs.org/@lucid-agents/taskmarket/-/taskmarket-1.13.2.tgz",
+      "integrity": "sha512-8NPJZBf4FaNb95W7ChKzaRGtSaKIPC7hCg5sAtpmDmE/jrcX2Z0J2LDR+GK5/PwYTQzQ6z9wPkb2RHaWz4qSyg==",
+      "published": "2026-10-03T06:52:01.054Z",
+      "sources": {
+        "builder": {
+          "member": "package/dist/index.js",
+          "sha256": "ad56e7a551f675823521235154ec6c0a1dd0d4c766b7d0d5a993699cfa722a51",
+          "excerptSha256": "b2bb1f367b8209bcc3871b0c417426758207e12d92bc2ab28d963d06b780ecbe"
+        },
+        "signer": {
+          "member": "package/dist/index.js",
+          "sha256": "ad56e7a551f675823521235154ec6c0a1dd0d4c766b7d0d5a993699cfa722a51",
+          "excerptSha256": "a7c37899e86ac924aa8d4ad3a631145e686556f80586fb66daeb8ed57611cdb8"
+        },
+        "command": {
+          "member": "package/dist/index.js",
+          "sha256": "ad56e7a551f675823521235154ec6c0a1dd0d4c766b7d0d5a993699cfa722a51",
+          "excerptSha256": "ddf2c8679aa75e6cc439d3776d80b0751834f89809bdc828e75f8cadb8234165"
+        },
+        "transport": {
+          "member": "package/dist/index.js",
+          "sha256": "ad56e7a551f675823521235154ec6c0a1dd0d4c766b7d0d5a993699cfa722a51",
+          "excerptSha256": "3e60c94fe393b710b21f6b023247428a03ecfc47c58c9a27ac19404ac48293da"
+        },
+        "idempotent": {
+          "member": "package/dist/index.js",
+          "sha256": "ad56e7a551f675823521235154ec6c0a1dd0d4c766b7d0d5a993699cfa722a51",
+          "excerptSha256": "0d0b54d3dd82d4a3a8372bad270365ea8851f9ac85337b6332e4d7fa1e5ae530"
+        },
+        "validator": {
+          "member": "package/dist/index.js",
+          "sha256": "ad56e7a551f675823521235154ec6c0a1dd0d4c766b7d0d5a993699cfa722a51",
+          "excerptSha256": "f938d5c85f1c2c7725d1d41fc18cda08f1eea17c0927174498b0776d8b1678e2"
+        }
+      }
+    },
+    "1.20.0": {
+      "url": "https://registry.npmjs.org/@lucid-agents/taskmarket/-/taskmarket-1.20.0.tgz",
+      "integrity": "sha512-EhC+F8V8YJmxKDRDFsObp3bVQObPYm8ftVoFxadcaZvojUmoBU8c5OgRiwhzbt9QgL1uAg4pEANa6tyM603nWw==",
+      "published": "2026-10-20T10:57:09.448Z",
+      "sources": {
+        "builder": {
+          "member": "package/dist/chunk-F7HVOUHY.js",
+          "sha256": "d1b174981e3019e0d5be6383ad8517d30908cd3b91ef8cd682e9b88f115f9bb8",
+          "excerptSha256": "074bed52a8cc6d6e8f399b6a2708df4b28dd6366d4557c834e63ad9f686891d5"
+        },
+        "signer": {
+          "member": "package/dist/chunk-SCZPZWRF.js",
+          "sha256": "8f9bab1ed7ac78db93a31dca1a8069357a4ef50053ee9a561772c7fda78b8b9b",
+          "excerptSha256": "a7c37899e86ac924aa8d4ad3a631145e686556f80586fb66daeb8ed57611cdb8"
+        },
+        "command": {
+          "member": "package/dist/index.js",
+          "sha256": "86e88106e2c9e02b8883be8890b653f996939e17046edcb97ccb7d6b4233c6fd",
+          "excerptSha256": "d2f2dc43023b953f09bf5ca74f25880ad497b35f23d89d4bf5f71759909ed87e"
+        },
+        "transport": {
+          "member": "package/dist/chunk-F7HVOUHY.js",
+          "sha256": "d1b174981e3019e0d5be6383ad8517d30908cd3b91ef8cd682e9b88f115f9bb8",
+          "excerptSha256": "f7bcb26c970b56b32f06e7c4dba44bd05bdf865361caf5685937b88f2c39c57b"
+        },
+        "idempotent": {
+          "member": "package/dist/chunk-F7HVOUHY.js",
+          "sha256": "d1b174981e3019e0d5be6383ad8517d30908cd3b91ef8cd682e9b88f115f9bb8",
+          "excerptSha256": "0d0b54d3dd82d4a3a8372bad270365ea8851f9ac85337b6332e4d7fa1e5ae530"
+        },
+        "validator": {
+          "member": "package/dist/index.js",
+          "sha256": "86e88106e2c9e02b8883be8890b653f996939e17046edcb97ccb7d6b4233c6fd",
+          "excerptSha256": "f938d5c85f1c2c7725d1d41fc18cda08f1eea17c0927174498b0776d8b1678e2"
+        }
+      }
+    }
+  }
+}
