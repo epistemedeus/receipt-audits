@@ -1,0 +1,94 @@
+{
+  "staticSources": [
+    {
+      "file": "task-current.json",
+      "url": "https://api.taskmarket.dev/api/tasks/0x21ce4da5892dda87559f8c15ea6a4504deeeac510f73fd658efc63276754bd97",
+      "bytes": 6824,
+      "sha256": "843735ced4add7d03129ad806de01804f3793b2798d554e3023bf19180b317da",
+      "observedFileWriteTimeUTC": "2026-10-21T03:38:55.932227+00:00",
+      "timeMeaning": "filesystem write time, not a claimed server publication timestamp"
+    },
+    {
+      "file": "colony-linked.html",
+      "url": "https://thecolony.ai/post/ae0b7a66-c529-4d49-8f4a-467bb4791b93",
+      "bytes": 389256,
+      "sha256": "c41ebdc03676fbb66f95c03bb5e4b6d6030840912eb7215a6a56e8057577d0f3",
+      "observedFileWriteTimeUTC": "2026-10-21T03:39:10.144142+00:00",
+      "timeMeaning": "filesystem write time, not a claimed server publication timestamp"
+    },
+    {
+      "file": "colony-linked.txt",
+      "url": "derived text view of colony-linked.html",
+      "bytes": 85022,
+      "sha256": "57097e7a36ff4ceda0575e3f92c9f2d7808f8ceb4d122a16c3dfb1a417dc6713",
+      "observedFileWriteTimeUTC": "2026-10-21T03:39:49.935902+00:00",
+      "timeMeaning": "filesystem write time, not a claimed server publication timestamp"
+    },
+    {
+      "file": "flapjax.html",
+      "url": "https://flapjax.surge.sh/",
+      "bytes": 215349,
+      "sha256": "a602d8addd6ddf8029400f1e681d77dbd940696c8693e426fe4205bdca3c7bcf",
+      "observedFileWriteTimeUTC": "2026-10-21T03:39:50.075901+00:00",
+      "timeMeaning": "filesystem write time, not a claimed server publication timestamp"
+    },
+    {
+      "file": "flapjax-skill.md",
+      "url": "https://flapjax.surge.sh/skill.md",
+      "bytes": 6045,
+      "sha256": "aa2e81d65002870f173209fdcf1f2a658359ba022c098ddf620a1a47eb9219af",
+      "observedFileWriteTimeUTC": "2026-10-21T03:39:50.119901+00:00",
+      "timeMeaning": "filesystem write time, not a claimed server publication timestamp"
+    },
+    {
+      "file": "bscscan-token.html",
+      "url": "https://bscscan.com/token/0x90c8889f428f9ebb77bb8f15cad3a50a9ac680df",
+      "bytes": 5522,
+      "sha256": "e5f5e0377ac82f1083d579a06ea743fabf224b22af8e1bcca316b80f54b26bb6",
+      "observedFileWriteTimeUTC": "2026-10-21T03:39:10.180141+00:00",
+      "timeMeaning": "filesystem write time, not a claimed server publication timestamp"
+    },
+    {
+      "file": "sourcify-vault.json",
+      "url": "https://sourcify.dev/server/v2/contract/56/0x238a358808379702088667322f80ac48bad5e6c4?fields=runtimeBytecode.onchainBytecode,compilation",
+      "bytes": 17795,
+      "sha256": "cc470fd4a74b7bee20c662c15d36156005269409d9bfd8e0a60f95fc224f8992",
+      "observedFileWriteTimeUTC": "2026-10-21T03:47:55.144927+00:00",
+      "timeMeaning": "filesystem write time, not a claimed server publication timestamp"
+    },
+    {
+      "file": "bscscan-vault.txt",
+      "url": "https://bscscan.com/address/0x238a358808379702088667322f80ac48bad5e6c4#code",
+      "bytes": 25,
+      "sha256": "2fbdaaa36a31ec4853f2062504fc20ecfc24512cfe648271bc840f246a542911",
+      "observedFileWriteTimeUTC": "2026-10-21T03:47:24.677126+00:00",
+      "timeMeaning": "filesystem write time, not a claimed server publication timestamp"
+    },
+    {
+      "file": "probe-0.txt",
+      "url": "https://bscscan.com/token/generic-tokenholders2?a=0x90c8889f428f9ebb77bb8f15cad3a50a9ac680df&s=1000000000000000000000000000&p=1",
+      "bytes": 25,
+      "sha256": "2fbdaaa36a31ec4853f2062504fc20ecfc24512cfe648271bc840f246a542911",
+      "observedFileWriteTimeUTC": "2026-10-21T03:39:26.952040+00:00",
+      "timeMeaning": "filesystem write time, not a claimed server publication timestamp"
+    },
+    {
+      "file": "probe-1.txt",
+      "url": "https://api.routescan.io/v2/network/mainnet/evm/56/erc20/0x90c8889f428f9ebb77bb8f15cad3a50a9ac680df/holders?limit=100",
+      "bytes": 27,
+      "sha256": "f1e7c5cc3ec0fe9dfdeab7a2cbe7cef0e961b5b3bb18263f76e8c31320487301",
+      "observedFileWriteTimeUTC": "2026-10-21T03:39:27.060040+00:00",
+      "timeMeaning": "filesystem write time, not a claimed server publication timestamp"
+    },
+    {
+      "file": "probe-2.txt",
+      "url": "https://thecolony.ai/api/posts/ae0b7a66-c529-4d49-8f4a-467bb4791b93",
+      "bytes": 25,
+      "sha256": "0738e1d53e03cdde4e379859b024fb665340ccc62ac4ed215101772e5d81327b",
+      "observedFileWriteTimeUTC": "2026-10-21T03:39:27.124039+00:00",
+      "timeMeaning": "filesystem write time, not a claimed server publication timestamp"
+    }
+  ],
+  "rpc": "rpc.jsonl contains its own URLs, exact requests, results, status and observation timestamps",
+  "sourceCommit": "3353eaf2705af93eb3055192e2cfee6011575740"
+}

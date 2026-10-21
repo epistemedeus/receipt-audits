@@ -1,0 +1,540 @@
+{
+  "window": {
+    "start": "2026-10-09T00:00:00Z",
+    "endExclusive": "2026-10-19T00:00:00Z",
+    "firstBlock": 126536085,
+    "lastBlock": 128454490
+  },
+  "coverage": {
+    "firstPaddedBlock": 126424183,
+    "lastPaddedBlock": 128550459,
+    "paddedTokenTransfers": 232,
+    "paddedPoolEvents": 22,
+    "paddedSwaps": 22,
+    "windowSwaps": 18,
+    "windowTokenTransfers": 223,
+    "windowTreasuryOutflows": 191,
+    "windowTreasuryToPool": 0,
+    "windowPoolOutflows": 12,
+    "windowPoolToTreasury": 9,
+    "windowOtherSwaps": 9,
+    "windowOtherBuys": 3,
+    "windowOtherSells": 6,
+    "coarseRanges": 43,
+    "fineRanges": 86
+  },
+  "metadata": {
+    "block": 128454490,
+    "token0": "0x90c8889f428f9ebb77bb8f15cad3a50a9ac680df",
+    "token1": "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c",
+    "factory": "0x0bfbcf9fa4f9c56b0f40a671ad40e0805a091865",
+    "fee": 10000,
+    "FJ_name": "FlapJax",
+    "FJ_symbol": "FLAPJAX",
+    "WBNB_name": "Wrapped BNB",
+    "WBNB_symbol": "WBNB",
+    "decimals": 18
+  },
+  "finalized": {
+    "number": "0x7ac9d25",
+    "hash": "0x5072256294751a8be2e880cfd9a8848da93f7ab480f7d1e401f57c404f19263a",
+    "timestamp": "0x6ad76a49"
+  },
+  "buys": [
+    {
+      "tx": "0xbeefabdc89f9148f9daaef6082d34a60dc5b4b612972ca0fd39d6bd4eb03b4b0",
+      "block": 126684151,
+      "blockHash": "0x9c1df11fba6833f7ee60b4ea32162dab26962c4f66000131990998d8fcd3e4a6",
+      "UTC": "2026-10-09T18:30:53Z",
+      "timestamp": 1791570653,
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "signer": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "router": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+      "FJ_atoms": "24052995308271524768278040",
+      "FLAPJAX": "24052995.30827152476827804",
+      "WBNB_input_atoms": "10000000000000000",
+      "BNB_input": "0.01",
+      "native_value_atoms": "10000000000000000",
+      "native_value_BNB": "0.01",
+      "gas_atoms": "6374100000000",
+      "gas_BNB": "0.0000063741",
+      "treasury_block_native_debit_atoms": "10006374100000000",
+      "native_residual_atoms": "0",
+      "transferLogIndex": 100,
+      "swapLogIndex": 103,
+      "price": {
+        "numerator": "250000000000000",
+        "denominator": "601324882706788119206951",
+        "BNB_per_FLAPJAX": "4.157486363688403023E-10"
+      }
+    },
+    {
+      "tx": "0x8ce8e8578da26f8c7acb0f44c6ca0d0b8dcba868cafe2d729bb48562863f2d62",
+      "block": 126875701,
+      "blockHash": "0x3b54428b92e189f1f2969fc9a7e199231b305c87d603f9ee803ba8e581f3d047",
+      "UTC": "2026-10-10T18:27:56Z",
+      "timestamp": 1791656876,
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "signer": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "router": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+      "FJ_atoms": "23979958557395636288483739",
+      "FLAPJAX": "23979958.557395636288483739",
+      "WBNB_input_atoms": "10000000000000000",
+      "BNB_input": "0.01",
+      "native_value_atoms": "10000000000000000",
+      "native_value_BNB": "0.01",
+      "gas_atoms": "6374100000000",
+      "gas_BNB": "0.0000063741",
+      "treasury_block_native_debit_atoms": "10006374100000000",
+      "native_residual_atoms": "0",
+      "transferLogIndex": 308,
+      "swapLogIndex": 311,
+      "price": {
+        "numerator": "10000000000000000",
+        "denominator": "23979958557395636288483739",
+        "BNB_per_FLAPJAX": "4.170148991736230286E-10"
+      }
+    },
+    {
+      "tx": "0x82d01172ae26f1c86287643e123af1675ca5c18b984b7740c1a0c1647d2801eb",
+      "block": 127067713,
+      "blockHash": "0xa55964f64459584a841aae5cd8dbcc08f0cc0e8d2fc571812c81c455cf8f5ea6",
+      "UTC": "2026-10-11T18:30:35Z",
+      "timestamp": 1791743435,
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "signer": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "router": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+      "FJ_atoms": "23907253965589989685035768",
+      "FLAPJAX": "23907253.965589989685035768",
+      "WBNB_input_atoms": "10000000000000000",
+      "BNB_input": "0.01",
+      "native_value_atoms": "10000000000000000",
+      "native_value_BNB": "0.01",
+      "gas_atoms": "6377700000000",
+      "gas_BNB": "0.0000063777",
+      "treasury_block_native_debit_atoms": "10006377700000000",
+      "native_residual_atoms": "0",
+      "transferLogIndex": 423,
+      "swapLogIndex": 426,
+      "price": {
+        "numerator": "1250000000000000",
+        "denominator": "2988406745698748710629471",
+        "BNB_per_FLAPJAX": "4.182830874007163412E-10"
+      }
+    },
+    {
+      "tx": "0x9afdc96e3ca876b5b617a26ba5105012ed8c33e805c77b1616bf48c198d5cbf1",
+      "block": 127261246,
+      "blockHash": "0x18629c7bb92bc012b49d3663ff148d10cb75928f00c79909741e27fe1124ddc5",
+      "UTC": "2026-10-12T18:46:27Z",
+      "timestamp": 1791830787,
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "signer": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "router": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+      "FJ_atoms": "23834879521763892137228328",
+      "FLAPJAX": "23834879.521763892137228328",
+      "WBNB_input_atoms": "10000000000000000",
+      "BNB_input": "0.01",
+      "native_value_atoms": "10000000000000000",
+      "native_value_BNB": "0.01",
+      "gas_atoms": "6376400000000",
+      "gas_BNB": "0.0000063764",
+      "treasury_block_native_debit_atoms": "10006376400000000",
+      "native_residual_atoms": "0",
+      "transferLogIndex": 40,
+      "swapLogIndex": 43,
+      "price": {
+        "numerator": "1250000000000000",
+        "denominator": "2979359940220486517153541",
+        "BNB_per_FLAPJAX": "4.195532010501202402E-10"
+      }
+    },
+    {
+      "tx": "0xc94de373d1fb00093431224a97475b3b2b48b9a4962d15acbe9d9c5c016d720c",
+      "block": 127452454,
+      "blockHash": "0x8995e9971da031a01e5775292aad4d61598cdbe504fd9e2a36c765516e51f936",
+      "UTC": "2026-10-13T18:41:15Z",
+      "timestamp": 1791916875,
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "signer": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "router": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+      "FJ_atoms": "23762833230024087278551319",
+      "FLAPJAX": "23762833.230024087278551319",
+      "WBNB_input_atoms": "10000000000000000",
+      "BNB_input": "0.01",
+      "native_value_atoms": "10000000000000000",
+      "native_value_BNB": "0.01",
+      "gas_atoms": "6376300000000",
+      "gas_BNB": "0.0000063763",
+      "treasury_block_native_debit_atoms": "10006376300000000",
+      "native_residual_atoms": "0",
+      "transferLogIndex": 256,
+      "swapLogIndex": 259,
+      "price": {
+        "numerator": "10000000000000000",
+        "denominator": "23762833230024087278551319",
+        "BNB_per_FLAPJAX": "4.208252401218347256E-10"
+      }
+    },
+    {
+      "tx": "0x172349c64ed3c45663650049f9e2ad3d763b1243c5c849b7d66f144f221d3186",
+      "block": 127643212,
+      "blockHash": "0xdc8c41f78014acb682e786d268202c7fcaae5cc53093aba140b0e43fc9c4985f",
+      "UTC": "2026-10-14T18:32:29Z",
+      "timestamp": 1792002749,
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "signer": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "router": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+      "FJ_atoms": "23691113109537150143912753",
+      "FLAPJAX": "23691113.109537150143912753",
+      "WBNB_input_atoms": "10000000000000000",
+      "BNB_input": "0.01",
+      "native_value_atoms": "10000000000000000",
+      "native_value_BNB": "0.01",
+      "gas_atoms": "6376300000000",
+      "gas_BNB": "0.0000063763",
+      "treasury_block_native_debit_atoms": "10006376300000000",
+      "native_residual_atoms": "0",
+      "transferLogIndex": 200,
+      "swapLogIndex": 203,
+      "price": {
+        "numerator": "10000000000000000",
+        "denominator": "23691113109537150143912753",
+        "BNB_per_FLAPJAX": "4.220992046158597972E-10"
+      }
+    },
+    {
+      "tx": "0xc999000f16f326e8868fe37f83871219be1a63f98043b0aef9ee57f469232156",
+      "block": 128086717,
+      "blockHash": "0xe68f32d5556f68ee1b9e502978e740dc8bce53211af1f25418f23e0b8b1cba24",
+      "UTC": "2026-10-17T02:00:51Z",
+      "timestamp": 1792202451,
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "signer": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "router": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+      "FJ_atoms": "23669235465921230581203552",
+      "FLAPJAX": "23669235.465921230581203552",
+      "WBNB_input_atoms": "10000000000000000",
+      "BNB_input": "0.01",
+      "native_value_atoms": "10000000000000000",
+      "native_value_BNB": "0.01",
+      "gas_atoms": "6326200000000",
+      "gas_BNB": "0.0000063262",
+      "treasury_block_native_debit_atoms": "10006326200000000",
+      "native_residual_atoms": "0",
+      "transferLogIndex": 512,
+      "swapLogIndex": 515,
+      "price": {
+        "numerator": "312500000000000",
+        "denominator": "739663608310038455662611",
+        "BNB_per_FLAPJAX": "4.224893539294041531E-10"
+      }
+    },
+    {
+      "tx": "0x6ec66780e0518da7c3c8b55d13b66d57400046f89ebe9df479c3c878f7b3311f",
+      "block": 128178495,
+      "blockHash": "0xbb513acebaddbd8faf22f7fecac0cea39eac314367d228d7f44d79ba49600295",
+      "UTC": "2026-10-17T13:29:27Z",
+      "timestamp": 1792243767,
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "signer": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "router": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+      "FJ_atoms": "23597938349722733902073707",
+      "FLAPJAX": "23597938.349722733902073707",
+      "WBNB_input_atoms": "10000000000000000",
+      "BNB_input": "0.01",
+      "native_value_atoms": "10000000000000000",
+      "native_value_BNB": "0.01",
+      "gas_atoms": "6375700000000",
+      "gas_BNB": "0.0000063757",
+      "treasury_block_native_debit_atoms": "10006375700000000",
+      "native_residual_atoms": "0",
+      "transferLogIndex": 382,
+      "swapLogIndex": 385,
+      "price": {
+        "numerator": "10000000000000000",
+        "denominator": "23597938349722733902073707",
+        "BNB_per_FLAPJAX": "4.237658329214804436E-10"
+      }
+    },
+    {
+      "tx": "0x05a9acf81b0eae4b7ff9a12168aead25964b6b2c0a16d3d1e667b7db6f17ad99",
+      "block": 128370339,
+      "blockHash": "0x88f75bec806b0fffca7089e1d754fc00c6bf2691815f4e4b21468dd5f3baeaf5",
+      "UTC": "2026-10-18T13:28:39Z",
+      "timestamp": 1792330119,
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "signer": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "router": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+      "FJ_atoms": "23506585156697207098877431",
+      "FLAPJAX": "23506585.156697207098877431",
+      "WBNB_input_atoms": "10000000000000000",
+      "BNB_input": "0.01",
+      "native_value_atoms": "10000000000000000",
+      "native_value_BNB": "0.01",
+      "gas_atoms": "6375100000000",
+      "gas_BNB": "0.0000063751",
+      "treasury_block_native_debit_atoms": "10006375100000000",
+      "native_residual_atoms": "0",
+      "transferLogIndex": 752,
+      "swapLogIndex": 755,
+      "price": {
+        "numerator": "10000000000000000",
+        "denominator": "23506585156697207098877431",
+        "BNB_per_FLAPJAX": "4.254127059859616830E-10"
+      }
+    }
+  ],
+  "paddingBuys": [
+    {
+      "tx": "0x3cec62e37b0b0fc60baa6449d38939c1d6a23446af0b5ce7247da8b3a6417fea",
+      "block": 126493263,
+      "blockHash": "0x163ed5e7eefc5c42c024b09004f69fa13f6d93472addf5e5d30e7c68d972fe1c",
+      "UTC": "2026-10-08T18:38:46Z",
+      "timestamp": 1791484726,
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "signer": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "router": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+      "FJ_atoms": "12053990789102625866817979",
+      "FLAPJAX": "12053990.789102625866817979",
+      "WBNB_input_atoms": "5000000000000000",
+      "BNB_input": "0.005",
+      "native_value_atoms": "5000000000000000",
+      "native_value_BNB": "0.005",
+      "gas_atoms": "6375000000000",
+      "gas_BNB": "0.000006375",
+      "treasury_block_native_debit_atoms": "5006375000000000",
+      "native_residual_atoms": "0",
+      "transferLogIndex": 228,
+      "swapLogIndex": 231,
+      "price": {
+        "numerator": "5000000000000000",
+        "denominator": "12053990789102625866817979",
+        "BNB_per_FLAPJAX": "4.148003833319861973E-10"
+      }
+    },
+    {
+      "tx": "0xd5210869e5cec642146b3f39590647b313d102f70a51b7c7bbf0c287ceff095d",
+      "block": 128530306,
+      "blockHash": "0xa59589b8bd57ceb0eead28b8492518b2513dd7f0dac828025a09f23275fbb549",
+      "UTC": "2026-10-19T09:28:47Z",
+      "timestamp": 1792402127,
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "signer": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "router": "0x1b81d678ffb9c0263b24a97847620c99d213eb14",
+      "FJ_atoms": "23545510421021461800775637",
+      "FLAPJAX": "23545510.421021461800775637",
+      "WBNB_input_atoms": "10000000000000000",
+      "BNB_input": "0.01",
+      "native_value_atoms": "10000000000000000",
+      "native_value_BNB": "0.01",
+      "gas_atoms": "6376300000000",
+      "gas_BNB": "0.0000063763",
+      "treasury_block_native_debit_atoms": "10006376300000000",
+      "native_residual_atoms": "0",
+      "transferLogIndex": 323,
+      "swapLogIndex": 326,
+      "price": {
+        "numerator": "10000000000000000",
+        "denominator": "23545510421021461800775637",
+        "BNB_per_FLAPJAX": "4.247094168352361229E-10"
+      }
+    }
+  ],
+  "otherSwaps": [
+    {
+      "tx": "0xa61c459d6febfb40b89cbe7eeef592a30eb7116d5341bb8370d39ea2b90052d2",
+      "block": 127705993,
+      "UTC": "2026-10-15T02:23:25Z",
+      "signer": "0x27e211207f89bd214c8e8954099e01522c329e83",
+      "amount0": "-9915528222250200832154197",
+      "amount1": "4194315277008057"
+    },
+    {
+      "tx": "0xe07fd78d30c5f44556230951919c9c1cdbf33c8d997e13bffca2464d9dfe598f",
+      "block": 127706777,
+      "UTC": "2026-10-15T02:29:19Z",
+      "signer": "0xde402734ac1aaea1230a64bf7acb2e9f7aeaa3d4",
+      "amount0": "-7441813864580914779643385",
+      "amount1": "3151411985966734"
+    },
+    {
+      "tx": "0x349447ca348092e9288346a54e48e00762dbaa74d6517322b3b38b50f7f648db",
+      "block": 127949693,
+      "UTC": "2026-10-16T08:52:53Z",
+      "signer": "0x1cecdfbb8507800e34e07dd4723abdf8ea07c747",
+      "amount0": "3250000000000000000000000",
+      "amount1": "-1349265004840487"
+    },
+    {
+      "tx": "0x0758a3a5d967a30b069130d83c40f67bfd57f34b0fa7b7ae2d4d4643d58460c4",
+      "block": 127970460,
+      "UTC": "2026-10-16T11:28:41Z",
+      "signer": "0x63fdb6540988aeea118f404763eb7df6c9eaad51",
+      "amount0": "7833988186607520268149905",
+      "amount1": "-3250068838679234"
+    },
+    {
+      "tx": "0x7e70fceb22bbb0ad30c79f9ec66a52eb38e5c0f3c3cee29ad5784801e184e29a",
+      "block": 127998968,
+      "UTC": "2026-10-16T15:02:34Z",
+      "signer": "0x781eb433ff788705080254c6f510df16d37b0c44",
+      "amount0": "1750000000000000000000000",
+      "amount1": "-725578931351562"
+    },
+    {
+      "tx": "0x413af1618ecc159ff1fb618446ec99cba8047907ff8c2b2451155a1c4c05fe98",
+      "block": 128001377,
+      "UTC": "2026-10-16T15:20:39Z",
+      "signer": "0xd1cada310f73455a2b119fa49aa8b682bfff9f7d",
+      "amount0": "21300000000000000000000000",
+      "amount1": "-8818489314547748"
+    },
+    {
+      "tx": "0xa184a3f498b2f27eb6384c44352a799781b7b9f66c7d5aa03bf6c200f923f35f",
+      "block": 128243669,
+      "UTC": "2026-10-17T21:38:22Z",
+      "signer": "0x81e68f1fef65347e33a8b684748b856ccddee5c9",
+      "amount0": "-6880512766634858786256487",
+      "amount1": "2921409109531357"
+    },
+    {
+      "tx": "0x15f83878206fe40b17ab7f5d00d73946bc4d31c9078ba92efca27c419b3a8ff9",
+      "block": 128312644,
+      "UTC": "2026-10-18T06:15:48Z",
+      "signer": "0x8d9dcf62c004ed31854b11db2a69fe3195abd233",
+      "amount0": "99750000000000000000000",
+      "amount1": "-41528206127681"
+    },
+    {
+      "tx": "0x7c57cbd2c01754f3572c6a88dd3fe9dd06aa97d228bc2b656f2a88817a708ee6",
+      "block": 128384772,
+      "UTC": "2026-10-18T15:16:57Z",
+      "signer": "0x8c062dc5d775b7d5efc168f75a875f392f53dcdf",
+      "amount0": "29930000000000000000000000",
+      "amount1": "-12474338247626988"
+    },
+    {
+      "tx": "0x8d8bd46d9da994e7cc67fdbe303f36e714c590de483812e62e2b24c0f61de61c",
+      "block": 128477395,
+      "UTC": "2026-10-19T02:51:49Z",
+      "signer": "0x7612ae460ad0e322cbbc92ff57171ae5d887b419",
+      "amount0": "6346725834873999937456048",
+      "amount1": "-2639142081964481"
+    },
+    {
+      "tx": "0x5c8c3d728a57ee098b5b1498777cf538d6193d47124edc229da1f0521238b485",
+      "block": 128522912,
+      "UTC": "2026-10-19T08:33:19Z",
+      "signer": "0xa43b369aac9b5b826e058c24583e87848333ff63",
+      "amount0": "550000000000000000000000",
+      "amount1": "-228605258756230"
+    }
+  ],
+  "totals": {
+    "buys": 9,
+    "WBNB_atoms": "90000000000000000",
+    "BNB": "0.09",
+    "FJ_atoms": "214002792664923451883644637",
+    "FLAPJAX": "214002792.664923451883644637",
+    "native_value_atoms": "90000000000000000",
+    "gas_atoms": "57331900000000",
+    "gas_BNB": "0.0000573319",
+    "value_plus_gas_BNB": "0.0900573319",
+    "weightedPrice": {
+      "numerator": "90000000000000000",
+      "denominator": "214002792664923451883644637",
+      "BNB_per_FLAPJAX": "4.205552594863479405E-10"
+    },
+    "firstPrice": {
+      "numerator": "250000000000000",
+      "denominator": "601324882706788119206951",
+      "BNB_per_FLAPJAX": "4.157486363688403023E-10"
+    },
+    "lastPrice": {
+      "numerator": "10000000000000000",
+      "denominator": "23506585156697207098877431",
+      "BNB_per_FLAPJAX": "4.254127059859616830E-10"
+    }
+  },
+  "calendarCounts": {
+    "UTC": {
+      "2026-10-09": 1,
+      "2026-10-10": 1,
+      "2026-10-11": 1,
+      "2026-10-12": 1,
+      "2026-10-13": 1,
+      "2026-10-14": 1,
+      "2026-10-15": 0,
+      "2026-10-16": 0,
+      "2026-10-17": 2,
+      "2026-10-18": 1
+    },
+    "UTC-5": {
+      "2026-10-09": 1,
+      "2026-10-10": 1,
+      "2026-10-11": 1,
+      "2026-10-12": 1,
+      "2026-10-13": 1,
+      "2026-10-14": 1,
+      "2026-10-15": 0,
+      "2026-10-16": 1,
+      "2026-10-17": 1,
+      "2026-10-18": 1
+    },
+    "UTC-4": {
+      "2026-10-09": 1,
+      "2026-10-10": 1,
+      "2026-10-11": 1,
+      "2026-10-12": 1,
+      "2026-10-13": 1,
+      "2026-10-14": 1,
+      "2026-10-15": 0,
+      "2026-10-16": 1,
+      "2026-10-17": 1,
+      "2026-10-18": 1
+    }
+  },
+  "localWindows": {
+    "UTC-5": {
+      "startBlock": 126576071,
+      "endBlock": 128494479,
+      "treasury_to_pool": 0,
+      "buy_hashes": [
+        "0xbeefabdc89f9148f9daaef6082d34a60dc5b4b612972ca0fd39d6bd4eb03b4b0",
+        "0x8ce8e8578da26f8c7acb0f44c6ca0d0b8dcba868cafe2d729bb48562863f2d62",
+        "0x82d01172ae26f1c86287643e123af1675ca5c18b984b7740c1a0c1647d2801eb",
+        "0x9afdc96e3ca876b5b617a26ba5105012ed8c33e805c77b1616bf48c198d5cbf1",
+        "0xc94de373d1fb00093431224a97475b3b2b48b9a4962d15acbe9d9c5c016d720c",
+        "0x172349c64ed3c45663650049f9e2ad3d763b1243c5c849b7d66f144f221d3186",
+        "0xc999000f16f326e8868fe37f83871219be1a63f98043b0aef9ee57f469232156",
+        "0x6ec66780e0518da7c3c8b55d13b66d57400046f89ebe9df479c3c878f7b3311f",
+        "0x05a9acf81b0eae4b7ff9a12168aead25964b6b2c0a16d3d1e667b7db6f17ad99"
+      ]
+    },
+    "UTC-4": {
+      "startBlock": 126568077,
+      "endBlock": 128486482,
+      "treasury_to_pool": 0,
+      "buy_hashes": [
+        "0xbeefabdc89f9148f9daaef6082d34a60dc5b4b612972ca0fd39d6bd4eb03b4b0",
+        "0x8ce8e8578da26f8c7acb0f44c6ca0d0b8dcba868cafe2d729bb48562863f2d62",
+        "0x82d01172ae26f1c86287643e123af1675ca5c18b984b7740c1a0c1647d2801eb",
+        "0x9afdc96e3ca876b5b617a26ba5105012ed8c33e805c77b1616bf48c198d5cbf1",
+        "0xc94de373d1fb00093431224a97475b3b2b48b9a4962d15acbe9d9c5c016d720c",
+        "0x172349c64ed3c45663650049f9e2ad3d763b1243c5c849b7d66f144f221d3186",
+        "0xc999000f16f326e8868fe37f83871219be1a63f98043b0aef9ee57f469232156",
+        "0x6ec66780e0518da7c3c8b55d13b66d57400046f89ebe9df479c3c878f7b3311f",
+        "0x05a9acf81b0eae4b7ff9a12168aead25964b6b2c0a16d3d1e667b7db6f17ad99"
+      ]
+    }
+  },
+  "verdicts": {
+    "nine_buys_each_0.01_total_0.09": "MATCH",
+    "one_daily_except_15_UTC": "MISMATCH",
+    "all_buy_output_to_treasury": "MATCH",
+    "no_treasury_FJ_to_named_pool": "MATCH",
+    "October23_makeup": "UNKNOWN (future promise)"
+  },
+  "rpcRecordsChecked": 574
+}

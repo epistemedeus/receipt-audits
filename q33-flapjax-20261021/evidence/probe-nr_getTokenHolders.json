@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-21T03:39:50.152969+00:00",
+  "url": "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "nr_getTokenHolders",
+    "params": [
+      {
+        "token": "0x90c8889f428f9ebb77bb8f15cad3a50a9ac680df",
+        "pageSize": "0x64",
+        "page": "0x1"
+      }
+    ]
+  },
+  "status": 200,
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "error": {
+      "code": -32602,
+      "message": "invalid argument 0: json: cannot unmarshal non-string into Go value of type common.Address"
+    }
+  }
+}

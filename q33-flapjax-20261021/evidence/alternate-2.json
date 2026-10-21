@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-21T03:44:04.465062+00:00",
+  "url": "https://bsc.drpc.org",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "eth_getCode",
+    "params": [
+      "0xca93ec685b8623688e6b236f9068034b298c2150",
+      "0x7ae5d19"
+    ]
+  },
+  "status": 0,
+  "response": {
+    "error": "HTTP Error 403: Forbidden"
+  }
+}
