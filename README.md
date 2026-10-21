@@ -1,7 +1,17 @@
 # Public receipt audits
 
-Reproducible technical audits with saved public evidence and independent replay commands.
+Reproduce the findings from saved public evidence, using standard-library
+commands and exact integer arithmetic.
 
-- [Q35 FLAPJAX buyback audit, October 20, 2026](q35-flapjax-20261020/README.md)
+- [Q33 holder, treasury and reward-retention audit](q33-flapjax-20261021/README.md):
+  reconcile the full holder list, classify top holders, check treasury flows and
+  compare payout recipients' retained balances at a named BSC snapshot.
+- [Q35 buyback audit](q35-flapjax-20261020/README.md): check buyback transactions,
+  amounts and timing against the stated policy.
+- [TaskMarket unsigned-message comparison](taskmarket-signature-20261021/README.md):
+  compare the official legacy and v2 message formats offline without a live wallet.
 
-Each audit carries its own scope, evidence limits, license and attribution.
+Each package includes its source, evidence boundaries and replay instructions.
+Start with its README. A reproduced result is not a requester award or payment.
+
+Maintained by [SameDayDesk](https://samedaydesk.com).
