@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-21T03:44:04.456343+00:00",
+  "url": "https://bsc-dataseed1.bnbchain.org",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "eth_getCode",
+    "params": [
+      "0xca93ec685b8623688e6b236f9068034b298c2150",
+      "0x7ae5d19"
+    ]
+  },
+  "status": 200,
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "error": {
+      "code": -32000,
+      "message": "missing trie node"
+    }
+  }
+}

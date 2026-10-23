@@ -11,6 +11,9 @@ commands and exact integer arithmetic.
 - [TaskMarket unsigned-message comparison](taskmarket-signature-20261021/README.md):
   compare the official legacy and v2 message formats offline without a live wallet.
 
+- [Q41 buyback and rule audit](q41-flapjax-20261023/README.md): October 9–21 COT,
+  with exact prices, native-value accounting and serial cold replay.
+
 Each package includes its source, evidence boundaries and replay instructions.
 Start with its README. A reproduced result is not a requester award or payment.
 

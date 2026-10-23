@@ -1,0 +1,121 @@
+{
+  "method": "independent BigInt reduction of saved token logs and secondary receipts",
+  "rows": [
+    {
+      "tx": "0xbeefabdc89f9148f9daaef6082d34a60dc5b4b612972ca0fd39d6bd4eb03b4b0",
+      "block": 126684151,
+      "UTC": "2026-10-09T18:30:53Z",
+      "FJ_atoms": "24052995308271524768278040",
+      "WBNB_atoms": "10000000000000000",
+      "native_value_atoms": "10000000000000000",
+      "gas_atoms": "6374100000000",
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f"
+    },
+    {
+      "tx": "0x8ce8e8578da26f8c7acb0f44c6ca0d0b8dcba868cafe2d729bb48562863f2d62",
+      "block": 126875701,
+      "UTC": "2026-10-10T18:27:56Z",
+      "FJ_atoms": "23979958557395636288483739",
+      "WBNB_atoms": "10000000000000000",
+      "native_value_atoms": "10000000000000000",
+      "gas_atoms": "6374100000000",
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f"
+    },
+    {
+      "tx": "0x82d01172ae26f1c86287643e123af1675ca5c18b984b7740c1a0c1647d2801eb",
+      "block": 127067713,
+      "UTC": "2026-10-11T18:30:35Z",
+      "FJ_atoms": "23907253965589989685035768",
+      "WBNB_atoms": "10000000000000000",
+      "native_value_atoms": "10000000000000000",
+      "gas_atoms": "6377700000000",
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f"
+    },
+    {
+      "tx": "0x9afdc96e3ca876b5b617a26ba5105012ed8c33e805c77b1616bf48c198d5cbf1",
+      "block": 127261246,
+      "UTC": "2026-10-12T18:46:27Z",
+      "FJ_atoms": "23834879521763892137228328",
+      "WBNB_atoms": "10000000000000000",
+      "native_value_atoms": "10000000000000000",
+      "gas_atoms": "6376400000000",
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f"
+    },
+    {
+      "tx": "0xc94de373d1fb00093431224a97475b3b2b48b9a4962d15acbe9d9c5c016d720c",
+      "block": 127452454,
+      "UTC": "2026-10-13T18:41:15Z",
+      "FJ_atoms": "23762833230024087278551319",
+      "WBNB_atoms": "10000000000000000",
+      "native_value_atoms": "10000000000000000",
+      "gas_atoms": "6376300000000",
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f"
+    },
+    {
+      "tx": "0x172349c64ed3c45663650049f9e2ad3d763b1243c5c849b7d66f144f221d3186",
+      "block": 127643212,
+      "UTC": "2026-10-14T18:32:29Z",
+      "FJ_atoms": "23691113109537150143912753",
+      "WBNB_atoms": "10000000000000000",
+      "native_value_atoms": "10000000000000000",
+      "gas_atoms": "6376300000000",
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f"
+    },
+    {
+      "tx": "0xc999000f16f326e8868fe37f83871219be1a63f98043b0aef9ee57f469232156",
+      "block": 128086717,
+      "UTC": "2026-10-17T02:00:51Z",
+      "FJ_atoms": "23669235465921230581203552",
+      "WBNB_atoms": "10000000000000000",
+      "native_value_atoms": "10000000000000000",
+      "gas_atoms": "6326200000000",
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f"
+    },
+    {
+      "tx": "0x6ec66780e0518da7c3c8b55d13b66d57400046f89ebe9df479c3c878f7b3311f",
+      "block": 128178495,
+      "UTC": "2026-10-17T13:29:27Z",
+      "FJ_atoms": "23597938349722733902073707",
+      "WBNB_atoms": "10000000000000000",
+      "native_value_atoms": "10000000000000000",
+      "gas_atoms": "6375700000000",
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f"
+    },
+    {
+      "tx": "0x05a9acf81b0eae4b7ff9a12168aead25964b6b2c0a16d3d1e667b7db6f17ad99",
+      "block": 128370339,
+      "UTC": "2026-10-18T13:28:39Z",
+      "FJ_atoms": "23506585156697207098877431",
+      "WBNB_atoms": "10000000000000000",
+      "native_value_atoms": "10000000000000000",
+      "gas_atoms": "6375100000000",
+      "recipient": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f"
+    }
+  ],
+  "totals": {
+    "buys": 9,
+    "FJ_atoms": "214002792664923451883644637",
+    "WBNB_atoms": "90000000000000000",
+    "native_value_atoms": "90000000000000000",
+    "gas_atoms": "57331900000000",
+    "weightedRatio": [
+      "90000000000000000",
+      "214002792664923451883644637"
+    ],
+    "firstRatio": [
+      "250000000000000",
+      "601324882706788119206951"
+    ],
+    "lastRatio": [
+      "10000000000000000",
+      "23506585156697207098877431"
+    ]
+  },
+  "coverage": {
+    "firstUTC": 126536085,
+    "afterUTC": 128454491,
+    "transfers": 223,
+    "treasuryOutflows": 191,
+    "treasuryToPool": 0
+  }
+}

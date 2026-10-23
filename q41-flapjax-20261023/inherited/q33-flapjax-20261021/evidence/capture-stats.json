@@ -1,0 +1,19 @@
+{
+  "totalRequests": 1440,
+  "statusCounts": {
+    "200": 1440
+  },
+  "methods": {
+    "nr_getTokenHolders": 3,
+    "eth_chainId": 2,
+    "eth_getBlockByNumber": 341,
+    "eth_call": 322,
+    "eth_getCode": 35,
+    "eth_getLogs": 104,
+    "eth_getTransactionByHash": 274,
+    "eth_getTransactionReceipt": 359
+  },
+  "firstObservation": "2026-10-21T03:40:10.217412+00:00",
+  "lastObservation": "2026-10-21T03:51:01.699182+00:00",
+  "failedResponses": 56
+}

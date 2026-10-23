@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-21T03:39:50.163388+00:00",
+  "url": "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3",
+  "request": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "nr_getTokenHolderCount",
+    "params": [
+      "0x90c8889f428f9ebb77bb8f15cad3a50a9ac680df"
+    ]
+  },
+  "status": 200,
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "result": "0x104"
+    }
+  }
+}

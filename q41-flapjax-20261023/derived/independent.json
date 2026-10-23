@@ -1,0 +1,10 @@
+{
+  "independent": "BigInt direct journal decode",
+  "buys": 12,
+  "bnbAtoms": "120000000000000000",
+  "fjAtoms": "284418120150881746565276184",
+  "gasAtoms": "76458500000000",
+  "minimumPostAtoms": "36158610033772485",
+  "sells": 0,
+  "allRowsCompared": true
+}
