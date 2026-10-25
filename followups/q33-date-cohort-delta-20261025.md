@@ -53,3 +53,39 @@ The 24/23 row counts alone would not prove that only one payout differs.
 The original package, replay code and manifests are unchanged. This follow-up
 adds the explicit set difference readers requested; it makes no new award,
 payment, current-balance, solvency or price claim.
+
+## Per-address sum cross-check
+
+Re-summing the retained per-address `paidAtoms` rows independently gives:
+
+| Cohort | Address rows | Sum of paid FLAPJAX |
+| --- | ---: | ---: |
+| Ledger-dated Q21-Q32 | 19 | 5,700,000 |
+| UTC-window Q21-Q32 | 18 | 5,450,000 |
+| Difference | 1 | 250,000 |
+
+At 18 decimals, the exact difference is
+`250000000000000000000000` atoms. Each cohort's address-grouped paid sum also
+matches the independently parsed matching rows in its retained payout CSV.
+The 18 common addresses have identical `paidAtoms`, `balanceAtoms` and threshold
+results. The only additional paid row is
+`0xe8797a6bb4693674d78e933e85cb159a0219d03b`, with 250,000 FLAPJAX.
+
+These are payout sums, not sums of historical wallet balances. Summing
+`balanceAtoms` instead differs by 24,600,000 FLAPJAX, because the ledger cohort
+includes that additional address's entire balance at the common snapshot.
+That is not another payout or an unexplained payment variance.
+
+With the original pinned `derived/summary.json` saved locally, this reproduces
+the paid-row arithmetic without network calls or a new chain scan:
+
+```js
+const s = JSON.parse(require('node:fs').readFileSync('summary.json', 'utf8'));
+const sum = rows => rows.reduce((n, r) => n + BigInt(r.paidAtoms), 0n);
+const ledger = sum(s.retentionLedgerDatedQ21to32.rows);
+const utc = sum(s.retentionQ21to32.rows);
+console.log({ ledger: String(ledger), utc: String(utc), delta: String(ledger - utc) });
+// ledger 5700000000000000000000000
+// utc    5450000000000000000000000
+// delta   250000000000000000000000
+```
