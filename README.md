@@ -6,6 +6,8 @@ commands and exact integer arithmetic.
 - [Q33 holder, treasury and reward-retention audit](q33-flapjax-20261021/README.md):
   reconcile the full holder list, classify top holders, check treasury flows and
   compare payout recipients' retained balances at a named BSC snapshot.
+  [Date-cohort follow-up](followups/q33-date-cohort-delta-20261025.md): the exact
+  ledger-only payout and unchanged common-recipient results.
 - [Q35 buyback audit](q35-flapjax-20261020/README.md): check buyback transactions,
   amounts and timing against the stated policy.
 - [TaskMarket unsigned-message comparison](taskmarket-signature-20261021/README.md):
