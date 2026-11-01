@@ -1,0 +1,615 @@
+{
+  "taskId": "0x8c14b4bc3e4017d3aac82de9eb59bb9a1fa53c331a23845274ff435eea936ec6",
+  "referenceCode": "TSK-QMV5MMJW",
+  "window": {
+    "year": 2026,
+    "startCOT": "2026-10-28T00:00:00-05:00",
+    "endCOTExclusive": "2026-10-29T00:00:00-05:00",
+    "startUnix": 1793163600,
+    "endUnixExclusive": 1793250000,
+    "firstTimerUntil": "2026-10-30T14:29:16.673000+00:00"
+  },
+  "bounds": {
+    "firstBlock": 130221520,
+    "lastBlock": 130413457,
+    "previousBlock": 130221519,
+    "nextBlock": 130413458,
+    "headers": {
+      "130221519": {
+        "number": 130221519,
+        "hash": "0x0de6f3ae9b9e35ec37a2fd4ea1fe52de1df82354c827781c7c493fc9097d6e7a",
+        "timestamp": 1793163599
+      },
+      "130221520": {
+        "number": 130221520,
+        "hash": "0x8c45336ba8635660de6d723d38cfbc6ed3e8a711e649c8cae54da6df48854b93",
+        "timestamp": 1793163600
+      },
+      "130413457": {
+        "number": 130413457,
+        "hash": "0x2db8cc93fb90059b145d66a39fcc0794bd25efafc86317387310082abae04b46",
+        "timestamp": 1793249999
+      },
+      "130413458": {
+        "number": 130413458,
+        "hash": "0x2f081b0f45363e20bf362ff342cc84e2d626c941b8fd7dcaebd1e622af781343",
+        "timestamp": 1793250000
+      }
+    }
+  },
+  "pin": {
+    "number": 130983729,
+    "hash": "0xa7745a6321dcfbe143dad44b7301298fe86568f7cfe691cf82523d4eb29e34d4",
+    "timestamp": 1793506720
+  },
+  "token": {
+    "address": "0x90c8889f428f9ebb77bb8f15cad3a50a9ac680df",
+    "decimals": 18
+  },
+  "treasury": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+  "counts": {
+    "outflowLogs": 17,
+    "externalOutflows": 17,
+    "selfTransfers": 0,
+    "inflowLogs": 2,
+    "distinctRecipients": 10
+  },
+  "totals": {
+    "externalOutAtoms": "2480000000000000000000000",
+    "externalOut": "2480000.000000000000000000",
+    "allOutAtoms": "2480000000000000000000000",
+    "allOut": "2480000.000000000000000000",
+    "inAtoms": "11945860504603865910684550",
+    "in": "11945860.504603865910684550",
+    "treasuryBefore": "816196536.447382439762897131",
+    "treasuryAfter": "825662396.951986305673581681",
+    "balanceDeltaAtoms": "9465860504603865910684550"
+  },
+  "reconciliation": "treasury balance change equals inflow logs minus outflow logs, to the base unit",
+  "groups": {
+    "evidenceGroups": [
+      {
+        "funder": "0x10ed43c718714eb63d5aa57b78b54704e256024e",
+        "recipients": [
+          "0x2ae18c3b2fc18545edd35beeaef97cc2ed908a02"
+        ],
+        "linkingTransactions": [
+          "0x5bd8ede524ed31fc2a86136e6a8e452b4c1b18aa420178fe895d8eca72bed6ef"
+        ],
+        "funderIsTreasury": false,
+        "sharesTreasuryFirstFunder": false,
+        "operatorControlProved": false
+      },
+      {
+        "funder": "0x67f5d43cbd8129bf41aae37a609aac44bd55dd1f",
+        "recipients": [
+          "0x8c062dc5d775b7d5efc168f75a875f392f53dcdf"
+        ],
+        "linkingTransactions": [
+          "0xb5a5215482c7cade369d789258eb4da375a32d62aa0392d669e56256d6d36ed8"
+        ],
+        "funderIsTreasury": false,
+        "sharesTreasuryFirstFunder": false,
+        "operatorControlProved": false
+      },
+      {
+        "funder": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+        "recipients": [
+          "0xca58696564492ef9c3229c89072365b253bda246",
+          "0xfb200657f7266157a45dfcc6c09690726daa24e6"
+        ],
+        "linkingTransactions": [
+          "0x87443eff758296585f6d6eb7b68800ea6c73f143239e60541a6ef5b1f072d456",
+          "0xa3d7042983f4f2352b9b8f324414688db10887e2b2b2a125deca9a8bec6624e7"
+        ],
+        "funderIsTreasury": true,
+        "sharesTreasuryFirstFunder": false,
+        "operatorControlProved": false
+      },
+      {
+        "funder": "0xca7ded7e4f4ba8ab3b10009236ae6d1b95094589",
+        "recipients": [
+          "0xa21fc88bd8c17cae306089d7b00a1f5cd5ad3ee9"
+        ],
+        "linkingTransactions": [
+          "0x322f5447e749887d2ea22c54536959d2a9f06890005c0ac2306d368e265c5840"
+        ],
+        "funderIsTreasury": false,
+        "sharesTreasuryFirstFunder": false,
+        "operatorControlProved": false
+      }
+    ],
+    "evidenceGroupCount": 4,
+    "unfundedRecipients": [
+      "0x3d98800c64c345950e1eaaa076d88c12d1bf5f37",
+      "0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c",
+      "0xabc2c3daffa4c1963299da225c25f2aa7d4ddf62",
+      "0xdf4ff9d2f45f99f11a90b16f277d4b7edddb72a5",
+      "0xfdf05af8ddce3621f01713e01721d6e9ad702ea8"
+    ],
+    "incompleteRecipients": [],
+    "treasuryFirstFunder": "0x5ba434b40be6cfc7033bf8d4545320fa609a4268",
+    "realOperatorCount": null,
+    "operatorNote": "A shared first BNB funder is an evidence group. It does not prove common operator control. Unfunded and incomplete recipients are not counted as proved operators."
+  },
+  "unexplainedTransfers": [],
+  "limits": {
+    "publicnodeLogQueries": 4,
+    "publicnodeEmptyResults": 4,
+    "publicnodeNonemptyResults": 0,
+    "publicnodeErrors": 0,
+    "publicnodeUsedAsHistory": false
+  },
+  "acceptance": {
+    "readAt": "2026-11-01T04:18:40.791949+00:00",
+    "taskStatus": "open",
+    "awardCount": 0,
+    "submissionCount": 107,
+    "rewardBaseUnits": "1000000",
+    "escrowBooked": "1000000",
+    "escrowIsAward": false,
+    "expiryTime": "2026-11-01T14:29:14.735Z",
+    "capturedAfterFirstTimerWindow": true,
+    "firstTimerUntil": "2026-10-30T14:29:16.673000+00:00",
+    "submissionSummary": {
+      "count": 107,
+      "rejectedAtNull": 107,
+      "acceptedAtValues": 0,
+      "acceptanceFields": [
+        "rejectedAt"
+      ]
+    },
+    "ugigQ78Listed": false,
+    "ugigIndexTotal": 5,
+    "colonyCommentCount": 12,
+    "note": "Taskmarket awardCount is this task's accepted-claim count. Colony decisions are a different venue. A public ugig index that omits Q78 does not prove ugig never accepted it."
+  },
+  "outflows": [
+    {
+      "block": 130289426,
+      "blockHash": "0x3159ce0c321b6f92a5fb4a9710f0a6dd3deff96a4c921e04352f1f92732ebba2",
+      "tx": "0xbfc21c7712f9ac9a4169e211e0e341d14236fbc097fae2e03852cce1ef0e7952",
+      "logIndex": 226,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c",
+      "atoms": 300000000000000000000000,
+      "timestamp": 1793194171,
+      "cot": "2026-10-28T08:29:31-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "300000.000000000000000000"
+    },
+    {
+      "block": 130289434,
+      "blockHash": "0xcdd51ce1b75bf59cde4e4c6579c2d6b9a60c75ee6457e8c67eda629ef5be2e0c",
+      "tx": "0x76f4abaa6a14005726257d1412d9a9842af6c09a5bb6395c2604f844f9bff77d",
+      "logIndex": 439,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0xfb200657f7266157a45dfcc6c09690726daa24e6",
+      "atoms": 25000000000000000000000,
+      "timestamp": 1793194175,
+      "cot": "2026-10-28T08:29:35-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "25000.000000000000000000"
+    },
+    {
+      "block": 130289443,
+      "blockHash": "0x3d06c2b0b7e50581a73fe7320a336b8b93d3b3a099445495d4e3dcc565b02daf",
+      "tx": "0xdd2feb71c1dda3945b233ab7c924b1d1e6d52b7d3dcd4cc6354e3248df9b3da4",
+      "logIndex": 1555,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c",
+      "atoms": 25000000000000000000000,
+      "timestamp": 1793194179,
+      "cot": "2026-10-28T08:29:39-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "25000.000000000000000000"
+    },
+    {
+      "block": 130289453,
+      "blockHash": "0x0ccaf54067e83744fa3ad4232de8bc94c4437743f1eb4e1879f876b6691c7c64",
+      "tx": "0x8c6305282436e1867eeac42b859ff947dad7f0db447af34fb8ff7185d88bb0d9",
+      "logIndex": 289,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0xabc2c3daffa4c1963299da225c25f2aa7d4ddf62",
+      "atoms": 25000000000000000000000,
+      "timestamp": 1793194183,
+      "cot": "2026-10-28T08:29:43-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "25000.000000000000000000"
+    },
+    {
+      "block": 130289462,
+      "blockHash": "0xf14cb062239553d7206a5bfa3fe13bb43bf4a0f7ad55ae8aa73f6304e0cdda09",
+      "tx": "0xe468d224801e50cf936296a8f79b6bc9dc13d14bede24bd9945312e597b2074e",
+      "logIndex": 526,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0x3d98800c64c345950e1eaaa076d88c12d1bf5f37",
+      "atoms": 25000000000000000000000,
+      "timestamp": 1793194188,
+      "cot": "2026-10-28T08:29:48-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "25000.000000000000000000"
+    },
+    {
+      "block": 130289472,
+      "blockHash": "0x26c6547e36efbcc61d99e63ecc8a8a9bb38a1ebf362e87856aaba979597bfc7b",
+      "tx": "0x7e8f90f49597397529cc81cea8723debc2dd08da35ba78999fcc2840dc4cad0c",
+      "logIndex": 302,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0xdf4ff9d2f45f99f11a90b16f277d4b7edddb72a5",
+      "atoms": 25000000000000000000000,
+      "timestamp": 1793194192,
+      "cot": "2026-10-28T08:29:52-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "25000.000000000000000000"
+    },
+    {
+      "block": 130289480,
+      "blockHash": "0xadbea432ddc773f8d8305074f403e955c7daf6c1fe47a890bc7e3c70ed6133f7",
+      "tx": "0x0c7d758ba9955a141839d137c2830b41860eb00ccdb0bb1a10ef33829e9b1bb6",
+      "logIndex": 371,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0xabc2c3daffa4c1963299da225c25f2aa7d4ddf62",
+      "atoms": 300000000000000000000000,
+      "timestamp": 1793194196,
+      "cot": "2026-10-28T08:29:56-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "300000.000000000000000000"
+    },
+    {
+      "block": 130290580,
+      "blockHash": "0xb9d9fe1d9aea18ecbd2a5d3299fe95704bef532851376766101833eebe12dd54",
+      "tx": "0x825b5c67d1cf033e9f756dcd5c69f683d77f2478ee0ee5d8f6b04d42df05c8ae",
+      "logIndex": 292,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c",
+      "atoms": 300000000000000000000000,
+      "timestamp": 1793194691,
+      "cot": "2026-10-28T08:38:11-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "300000.000000000000000000"
+    },
+    {
+      "block": 130292025,
+      "blockHash": "0xfd4691537ea0efe307c0ff6ba5374c377ba766d5b21f93e241030a76caf50b90",
+      "tx": "0x388a55851ce63aaf984e6671f305155b165c47225dc5d7dab0e47d8ce2763372",
+      "logIndex": 484,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0x8c062dc5d775b7d5efc168f75a875f392f53dcdf",
+      "atoms": 10000000000000000000000,
+      "timestamp": 1793195342,
+      "cot": "2026-10-28T08:49:02-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "10000.000000000000000000"
+    },
+    {
+      "block": 130305844,
+      "blockHash": "0x0425c9323072ac78650cfd31e09ec1d604fb8d15a45c285526a8dc1acfccfec7",
+      "tx": "0x69fea445443ca8d27e43d3c11f53aaa34a2edc7e997e84668409d86eb021abb5",
+      "logIndex": 644,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0xfdf05af8ddce3621f01713e01721d6e9ad702ea8",
+      "atoms": 25000000000000000000000,
+      "timestamp": 1793201563,
+      "cot": "2026-10-28T10:32:43-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "25000.000000000000000000"
+    },
+    {
+      "block": 130305853,
+      "blockHash": "0x73f6e609da10522ccc8f5aace1521d1a5fb51cd38f66b99e50e30b3e41170f4e",
+      "tx": "0x3f4d252efc70064dd841e062847aad926bebca630137787832c77b10fd246de5",
+      "logIndex": 541,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0xfdf05af8ddce3621f01713e01721d6e9ad702ea8",
+      "atoms": 300000000000000000000000,
+      "timestamp": 1793201567,
+      "cot": "2026-10-28T10:32:47-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "300000.000000000000000000"
+    },
+    {
+      "block": 130305864,
+      "blockHash": "0x07e6fa9867fd3c9ab8d64cef4d3b401ac945bb129187fec06d755de825713b22",
+      "tx": "0x4f591ad86bb514247d59dbc91cf5793b0a63f22b9e73929aa4bb05946cc3f1f9",
+      "logIndex": 273,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0xfdf05af8ddce3621f01713e01721d6e9ad702ea8",
+      "atoms": 120000000000000000000000,
+      "timestamp": 1793201572,
+      "cot": "2026-10-28T10:32:52-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "120000.000000000000000000"
+    },
+    {
+      "block": 130329034,
+      "blockHash": "0xf85056a0d775f0343aa308260bde091f80305d2a3362bd703ee909b7d12a16ff",
+      "tx": "0x00b7423c3baf0986ceda24d5286733747a5aed181106a8cf166f6319eacd94bd",
+      "logIndex": 392,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0xca58696564492ef9c3229c89072365b253bda246",
+      "atoms": 150000000000000000000000,
+      "timestamp": 1793212000,
+      "cot": "2026-10-28T13:26:40-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "150000.000000000000000000"
+    },
+    {
+      "block": 130375885,
+      "blockHash": "0x4facc5ebd0064ca10b58567b8244c603fc55949fe1e073dcebec9092a8fcbcba",
+      "tx": "0x41f5bc43f9d147a414d86778cfee19c21b62da0d8fed1f9e22cd04f36b283c8e",
+      "logIndex": 147,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0xa21fc88bd8c17cae306089d7b00a1f5cd5ad3ee9",
+      "atoms": 250000000000000000000000,
+      "timestamp": 1793233087,
+      "cot": "2026-10-28T19:18:07-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "250000.000000000000000000"
+    },
+    {
+      "block": 130375893,
+      "blockHash": "0xdc8e5f38df256a3f61fc3b243fc7126618e033ed8088a6e1c5bd75038c610612",
+      "tx": "0x36485b4966c1dbcd0198d840a865c4e97e2fec32c5f1f74cf55f5030d88bae37",
+      "logIndex": 219,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0xa21fc88bd8c17cae306089d7b00a1f5cd5ad3ee9",
+      "atoms": 50000000000000000000000,
+      "timestamp": 1793233090,
+      "cot": "2026-10-28T19:18:10-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "50000.000000000000000000"
+    },
+    {
+      "block": 130375904,
+      "blockHash": "0xbdf88a91f212f19f5085b08a12862e8a53409231de6e53b569a692330bf3b811",
+      "tx": "0x9af6e7e8ba53540a930d3a7c532af1637c6ccc6324067ab402693b24aff992b0",
+      "logIndex": 215,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0xa21fc88bd8c17cae306089d7b00a1f5cd5ad3ee9",
+      "atoms": 250000000000000000000000,
+      "timestamp": 1793233095,
+      "cot": "2026-10-28T19:18:15-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "250000.000000000000000000"
+    },
+    {
+      "block": 130409040,
+      "blockHash": "0xc180bbc08df10c9a896d5fcfb95bf33f42418d2d584c555853fb18cd7f7cab79",
+      "tx": "0xcdbada2d2795f663a10fdb373337139f93b11256a6dfe102368c4538149412a5",
+      "logIndex": 166,
+      "from": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "to": "0x2ae18c3b2fc18545edd35beeaef97cc2ed908a02",
+      "atoms": 300000000000000000000000,
+      "timestamp": 1793248010,
+      "cot": "2026-10-28T23:26:50-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "300000.000000000000000000"
+    }
+  ],
+  "selfTransfers": [],
+  "inflows": [
+    {
+      "block": 130331045,
+      "blockHash": "0x8012bc185d0906fca3fced5f17aa5afc3dce736f13ea1805988e0ae5248abf57",
+      "tx": "0xa6f25856a9ce66cdf3ba4dba21bb2c19423610076db7ed7dd827d2029d1416fa",
+      "logIndex": 268,
+      "from": "0xca93ec685b8623688e6b236f9068034b298c2150",
+      "to": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "atoms": 11645860504603865910684550,
+      "timestamp": 1793212906,
+      "cot": "2026-10-28T13:41:46-05:00",
+      "mechanism": "contract-mediated-transfer-event",
+      "amount": "11645860.504603865910684550"
+    },
+    {
+      "block": 130347025,
+      "blockHash": "0x99c7676384fed18e3daf0f3ccfef9b7d8ab7ba05fbcc1d66aa94cb9c2bceffc0",
+      "tx": "0x6ebd86862873513c0f9e69421bee5fad25721e70ac999b90f040a0d5c10d7dc8",
+      "logIndex": 130,
+      "from": "0xca58696564492ef9c3229c89072365b253bda246",
+      "to": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "atoms": 300000000000000000000000,
+      "timestamp": 1793220097,
+      "cot": "2026-10-28T15:41:37-05:00",
+      "mechanism": "normal-transfer-call",
+      "amount": "300000.000000000000000000"
+    }
+  ],
+  "funders": [
+    {
+      "role": "recipient",
+      "address": "0x2ae18c3b2fc18545edd35beeaef97cc2ed908a02",
+      "coverage": "observed",
+      "funder": "0x10ed43c718714eb63d5aa57b78b54704e256024e",
+      "funderTx": "0x5bd8ede524ed31fc2a86136e6a8e452b4c1b18aa420178fe895d8eca72bed6ef",
+      "funderBlock": 130632004,
+      "funderTxIndex": 32,
+      "category": "internal",
+      "valueAtoms": 6257934517396,
+      "balanceAtPin": 6257934517396,
+      "nonceAtPin": 0,
+      "codeBytes": 0,
+      "firstActivityBlock": 130632004,
+      "operatorControlProved": false,
+      "note": "empty code at the pin; first end-state activity block; internal transfer",
+      "bnb": "0.000006257934517396"
+    },
+    {
+      "role": "recipient",
+      "address": "0x3d98800c64c345950e1eaaa076d88c12d1bf5f37",
+      "coverage": "absent",
+      "funder": null,
+      "funderTx": null,
+      "funderBlock": null,
+      "funderTxIndex": null,
+      "category": null,
+      "valueAtoms": null,
+      "balanceAtPin": 0,
+      "nonceAtPin": 0,
+      "codeBytes": 0,
+      "firstActivityBlock": null,
+      "operatorControlProved": false,
+      "note": "empty code, nonce 0, and balance 0 at the pin; an EOA cannot have spent a prior BNB credit without increasing nonce"
+    },
+    {
+      "role": "recipient",
+      "address": "0x8c062dc5d775b7d5efc168f75a875f392f53dcdf",
+      "coverage": "observed",
+      "funder": "0x67f5d43cbd8129bf41aae37a609aac44bd55dd1f",
+      "funderTx": "0xb5a5215482c7cade369d789258eb4da375a32d62aa0392d669e56256d6d36ed8",
+      "funderBlock": 124103796,
+      "funderTxIndex": 82,
+      "category": "external",
+      "valueAtoms": 66161600000000,
+      "balanceAtPin": 9989901039248792,
+      "nonceAtPin": 7,
+      "codeBytes": 0,
+      "firstActivityBlock": 124103796,
+      "operatorControlProved": false,
+      "note": "empty code at the pin; first end-state activity block; normal transfer",
+      "bnb": "0.000066161600000000"
+    },
+    {
+      "role": "recipient",
+      "address": "0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c",
+      "coverage": "absent",
+      "funder": null,
+      "funderTx": null,
+      "funderBlock": null,
+      "funderTxIndex": null,
+      "category": null,
+      "valueAtoms": null,
+      "balanceAtPin": 0,
+      "nonceAtPin": 0,
+      "codeBytes": 0,
+      "firstActivityBlock": null,
+      "operatorControlProved": false,
+      "note": "empty code, nonce 0, and balance 0 at the pin; an EOA cannot have spent a prior BNB credit without increasing nonce"
+    },
+    {
+      "role": "recipient",
+      "address": "0xa21fc88bd8c17cae306089d7b00a1f5cd5ad3ee9",
+      "coverage": "observed",
+      "funder": "0xca7ded7e4f4ba8ab3b10009236ae6d1b95094589",
+      "funderTx": "0x322f5447e749887d2ea22c54536959d2a9f06890005c0ac2306d368e265c5840",
+      "funderBlock": 128955356,
+      "funderTxIndex": 33,
+      "category": "external",
+      "valueAtoms": 164397936681007,
+      "balanceAtPin": 5000000000,
+      "nonceAtPin": 6,
+      "codeBytes": 0,
+      "firstActivityBlock": 128955356,
+      "operatorControlProved": false,
+      "note": "empty code at the pin; first end-state activity block; normal transfer",
+      "bnb": "0.000164397936681007"
+    },
+    {
+      "role": "recipient",
+      "address": "0xabc2c3daffa4c1963299da225c25f2aa7d4ddf62",
+      "coverage": "absent",
+      "funder": null,
+      "funderTx": null,
+      "funderBlock": null,
+      "funderTxIndex": null,
+      "category": null,
+      "valueAtoms": null,
+      "balanceAtPin": 0,
+      "nonceAtPin": 0,
+      "codeBytes": 0,
+      "firstActivityBlock": null,
+      "operatorControlProved": false,
+      "note": "empty code, nonce 0, and balance 0 at the pin; an EOA cannot have spent a prior BNB credit without increasing nonce"
+    },
+    {
+      "role": "recipient",
+      "address": "0xca58696564492ef9c3229c89072365b253bda246",
+      "coverage": "observed",
+      "funder": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "funderTx": "0x87443eff758296585f6d6eb7b68800ea6c73f143239e60541a6ef5b1f072d456",
+      "funderBlock": 130097514,
+      "funderTxIndex": 83,
+      "category": "external",
+      "valueAtoms": 500000000000000,
+      "balanceAtPin": 463392000000000,
+      "nonceAtPin": 1,
+      "codeBytes": 0,
+      "firstActivityBlock": 130097514,
+      "operatorControlProved": false,
+      "note": "empty code at the pin; first end-state activity block; normal transfer",
+      "bnb": "0.000500000000000000"
+    },
+    {
+      "role": "recipient",
+      "address": "0xdf4ff9d2f45f99f11a90b16f277d4b7edddb72a5",
+      "coverage": "absent",
+      "funder": null,
+      "funderTx": null,
+      "funderBlock": null,
+      "funderTxIndex": null,
+      "category": null,
+      "valueAtoms": null,
+      "balanceAtPin": 0,
+      "nonceAtPin": 0,
+      "codeBytes": 0,
+      "firstActivityBlock": null,
+      "operatorControlProved": false,
+      "note": "empty code, nonce 0, and balance 0 at the pin; an EOA cannot have spent a prior BNB credit without increasing nonce"
+    },
+    {
+      "role": "recipient",
+      "address": "0xfb200657f7266157a45dfcc6c09690726daa24e6",
+      "coverage": "observed",
+      "funder": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "funderTx": "0xa3d7042983f4f2352b9b8f324414688db10887e2b2b2a125deca9a8bec6624e7",
+      "funderBlock": 126835408,
+      "funderTxIndex": 65,
+      "category": "external",
+      "valueAtoms": 500000000000000,
+      "balanceAtPin": 500000000000000,
+      "nonceAtPin": 0,
+      "codeBytes": 0,
+      "firstActivityBlock": 126835408,
+      "operatorControlProved": false,
+      "note": "empty code at the pin; first end-state activity block; normal transfer",
+      "bnb": "0.000500000000000000"
+    },
+    {
+      "role": "recipient",
+      "address": "0xfdf05af8ddce3621f01713e01721d6e9ad702ea8",
+      "coverage": "absent",
+      "funder": null,
+      "funderTx": null,
+      "funderBlock": null,
+      "funderTxIndex": null,
+      "category": null,
+      "valueAtoms": null,
+      "balanceAtPin": 0,
+      "nonceAtPin": 0,
+      "codeBytes": 0,
+      "firstActivityBlock": null,
+      "operatorControlProved": false,
+      "note": "empty code, nonce 0, and balance 0 at the pin; an EOA cannot have spent a prior BNB credit without increasing nonce"
+    },
+    {
+      "role": "treasury",
+      "address": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
+      "coverage": "observed",
+      "funder": "0x5ba434b40be6cfc7033bf8d4545320fa609a4268",
+      "funderTx": "0xe0f7aeeedd38558ba63a596b8eb6b73e53af63d6282fc3e370160f3b2109bfd0",
+      "funderBlock": 123473817,
+      "funderTxIndex": 23,
+      "category": "external",
+      "valueAtoms": 126380710000000000,
+      "balanceAtPin": 193679987976145245,
+      "nonceAtPin": 598,
+      "codeBytes": 0,
+      "firstActivityBlock": 123473817,
+      "operatorControlProved": false,
+      "note": "empty code at the pin; first end-state activity block; normal transfer",
+      "bnb": "0.126380710000000000"
+    }
+  ],
+  "journalRows": 524
+}

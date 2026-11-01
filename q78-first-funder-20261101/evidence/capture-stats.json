@@ -1,0 +1,18 @@
+{
+  "seconds": 66.693,
+  "newRequests": 524,
+  "publicnode": {
+    "status": "unavailable",
+    "error": "publicnode log set differs from the primary log set"
+  },
+  "routes": {
+    "etherscanV2Bsc": "https://api.etherscan.io/v2/api refused free BSC coverage before this capture",
+    "routescanBsc": "https://api.routescan.io returned chain not supported",
+    "bscscanV1": "https://api.bscscan.com/api returned an HTML API-migration page",
+    "blockscoutBsc": "https://bsc.blockscout.com/api and /api/v2 returned HTTP 404",
+    "ugig": "unauthenticated GET /api/bounties"
+  },
+  "pin": 130983729,
+  "firstBlock": 130221520,
+  "lastBlock": 130413457
+}
