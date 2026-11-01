@@ -46,6 +46,38 @@ def credit(block, tx_index, order, value, status=1, category="external", frm="0x
 
 
 class SyntheticAudit(unittest.TestCase):
+    def _assembled_trace(self, frame):
+        tx = '0x' + 'ab' * 32
+        return assemble_block_credits(
+            [{'hash': tx, 'transactionIndex': '0x0', 'from': '0x' + 'a' * 40, 'to': '0x' + 'b' * 40, 'value': '0x7'}],
+            {tx: 1}, {tx: frame}, '0x' + 'c' * 40, 42)
+
+    def test_code_context_values_are_not_balance_credits(self):
+        target, context = '0x' + 'c' * 40, '0x' + 'b' * 40
+        for kind in ('DELEGATECALL', 'CALLCODE'):
+            frame = {'type': 'CALL', 'to': context, 'value': '0x7', 'calls': [
+                {'type': kind, 'from': context, 'to': target, 'value': '0x7'}]}
+            result = self._assembled_trace(frame)
+            self.assertTrue(result['complete'])
+            self.assertEqual(result['credits'], [], kind)
+        frame['calls'][0]['calls'] = [{'type': 'CALL', 'from': context, 'to': target, 'value': '0x5'}]
+        result = self._assembled_trace(frame)
+        self.assertEqual([row['value'] for row in result['credits']], [5])
+
+    def test_balance_transfer_frame_families_remain_visible(self):
+        target, context = '0x' + 'c' * 40, '0x' + 'b' * 40
+        for kind in ('CALL', 'CREATE', 'CREATE2', 'SELFDESTRUCT'):
+            result = self._assembled_trace({'type': 'CALL', 'to': context, 'value': '0x0', 'calls': [
+                {'type': kind, 'from': context, 'to': target, 'value': '0x5'}]})
+            self.assertTrue(result['complete'])
+            self.assertEqual([row['value'] for row in result['credits']], [5], kind)
+
+    def test_missing_unknown_or_malformed_trace_is_not_complete(self):
+        for frame in ({}, {'type': 'FUTURE'}, {'type': 'CALL', 'calls': [{}]},
+                      {'type': 'CALL', 'calls': 'invalid'}, {'type': 'CALL', 'error': 'reverted'}):
+            result = self._assembled_trace(frame)
+            self.assertFalse(result['complete'], frame)
+            self.assertEqual(result['credits'], [])
     def test_eighteen_decimals_round_trip(self):
         atoms = 2480000 * 10**18 + 1
         text = units(atoms)

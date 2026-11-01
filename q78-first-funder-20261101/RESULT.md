@@ -28,7 +28,7 @@ Q78 receipt audit for 28 October 2026 COT records the saved capture. Lifetime BN
 - Secondary: `https://bsc-dataseed.bnbchain.org` matched chain id 56, four boundary hashes, and one outflow receipt during capture. Review repeated the earliest outflow receipt `0xbfc21c7712f9ac9a4169e211e0e341d14236fbc097fae2e03852cce1ef0e7952` and the first boundary header. Both matched.
 - `https://bsc.publicnode.com`: 4 outflow `eth_getLogs` queries, all HTTP 200 and empty. Not used as history.
 - Etherscan v2 free BSC, Routescan chain 56, bscscan v1, and Blockscout BSC were unavailable. Recorded in `evidence/capture-stats.json`. No account and no API key were created.
-- Tests, from this directory: `python3 -m unittest test_audit.py -v` (18 tests, OK); `python3 independent.py` (`rows` 17, `recipients` 10, `atoms` `2480000000000000000000000`); `python3 verify.py` (exit 0; offline reconciliation plus readonly receipt `0xbfc21c7712f9ac9a4169e211e0e341d14236fbc097fae2e03852cce1ef0e7952` and boundary block 130221520).
+- Tests, from this directory: `python3 -m unittest test_audit.py -v` (21 tests, OK); `python3 independent.py` (`rows` 17, `recipients` 10, `atoms` `2480000000000000000000000`); `python3 verify.py` (exit 0; offline reconciliation plus readonly receipt `0xbfc21c7712f9ac9a4169e211e0e341d14236fbc097fae2e03852cce1ef0e7952` and boundary block 130221520).
 - Fixtures in `test_audit.py` are synthetic. `evidence/` is the chain capture. Route availability is separate from acceptance, award, and settlement.
 
 ## Reuse
@@ -38,3 +38,5 @@ A later task can reuse `bind_window`, `chunk_ranges`, `assemble_block_credits`, 
 ## Source status
 
 Branch `codex/h98510-q78-first-funder-20261101`. Worktree `/home/ubuntu/ae14-work/h98510`. Raw `evidence/` is the original capture. Derived files were regenerated offline. Not submitted. Not merged to main. No qualifying increment is established.
+
+Root refinement: inherited DELEGATECALL/CALLCODE values are not balance credits. Known value-transferring child calls remain visible through code-context frames. Unknown/malformed trace structure cannot establish block coverage. The original producer fails two new controls; the corrected normal producer passes all21. EIP-7 describes inherited sender/value,not a new transfer to the code address. No new chain collection or eligibility is established.

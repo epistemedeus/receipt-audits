@@ -257,6 +257,15 @@ def lifetime_premise_justified(code_by_block):
     return False
 
 
+def trace_shape_complete(frame):
+    """Known callTracer structure only. Unknown/malformed frames are not coverage."""
+    kinds = {'CALL', 'CALLCODE', 'DELEGATECALL', 'STATICCALL', 'CREATE', 'CREATE2', 'SELFDESTRUCT'}
+    if not isinstance(frame, dict) or str(frame.get('type', '')).upper() not in kinds:
+        return False
+    children = frame.get('calls', [])
+    return isinstance(children, list) and all(trace_shape_complete(child) for child in children)
+
+
 def assemble_block_credits(transactions, receipts_by_hash, traces_by_hash, address, block):
     """Credits visible in the supplied block body, receipts, and call traces.
 
@@ -290,9 +299,9 @@ def assemble_block_credits(transactions, receipts_by_hash, traces_by_hash, addre
         if int(receipts_by_hash[tx_hash]) != 1:
             continue
         trace = traces_by_hash.get(tx_hash)
-        if trace is None:
+        if not trace_shape_complete(trace) or trace.get("error"):
             complete = False
-            limits.append("a successful transaction has no call trace")
+            limits.append("a successful transaction has no complete known call trace")
             if (tx.get("to") or "").lower() == address.lower() and quantity(tx.get("value", "0x0")) > 0:
                 credits.append({
                     "block": block,
@@ -370,7 +379,7 @@ def walk_value(frame, address, meta, out, state, depth=0, failed=False):
         to = (frame.get("to") or "").lower()
         raw = frame.get("value") or "0x0"
         value = n(raw) if isinstance(raw, str) else int(raw)
-        if to == address and value > 0:
+        if to == address and value > 0 and str(frame.get("type", "")).upper() in {"CALL", "CREATE", "CREATE2", "SELFDESTRUCT"}:
             kind = "create" if str(frame.get("type", "")).upper().startswith("CREATE") else ("external" if depth == 0 else "internal")
             out.append({
                 "block": meta["block"],
