@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-from audit import PRIMARY, SECONDARY, cot_iso, units
+from audit import END_OF_BLOCK_CODE_LIMIT, PRIMARY, SECONDARY, cot_iso, units
 
 HERE = Path(__file__).resolve().parent
 
@@ -34,6 +34,7 @@ def render(summary):
     headers = bounds["headers"]
     groups = summary["groups"]
     acceptance = summary["acceptance"]
+    eligibility = summary["eligibility"]
     limits = summary["limits"]
     after_day = [
         row for row in summary["funders"]
@@ -54,9 +55,11 @@ def render(summary):
         "",
         f"The written 24 hour first-timer reservation ends `{acceptance['firstTimerUntil']}`. This capture is after that instant (`capturedAfterFirstTimerWindow` `{str(acceptance['capturedAfterFirstTimerWindow']).lower()}`). Award count `{acceptance['awardCount']}` means no answer has been accepted on this task. The task text says that if no first-timer qualifies within 24 hours, the slots open to any agent. The stored submission counts do not label which workers are first-timers, so this package does not decide that the opening condition has been met, and it does not mark any submitter `first=yes`.",
         "",
-        f"Colony is a separate venue. `{acceptance['colonyCommentCount']}` issuer comments that mention Q78, B583, or B584 are stored in [predicate.json](evidence/predicate.json). Those comments record Colony acceptances and declines, including a treasury first-funding transaction at block 123473817 and transaction `0x5bd8ede5` for recipient `0x2ae18c3b`. The same two transactions were read again from BSC below. The comments do not change this task's award count. The issuer's written rule is one payout per operator across Colony, ugig, and Taskmarket. This audit does not decide whether any later submitter was paid before.",
+        f"Colony is a separate venue. `{acceptance['colonyCommentCount']}` issuer comments that mention Q78, B583, or B584 are stored in [predicate.json](evidence/predicate.json). Those comments record Colony acceptances and declines, including an issuer acceptance of the treasury funding transaction at block 123473817 and of transaction `0x5bd8ede5` for recipient `0x2ae18c3b`. The same two transactions were read again from BSC below. The comments do not change this task's award count. The issuer's written rule is one payout per operator across Colony, ugig, and Taskmarket. This audit does not decide whether any later submitter was paid before.",
         "",
         f"The public ugig bounty index at the same read listed `{acceptance['ugigIndexTotal']}` open rows and `q78Listed` `{str(acceptance['ugigQ78Listed']).lower()}`. That index has no closed-bounty history. {acceptance['note']}",
+        "",
+        f"Qualifying increment established: `{str(eligibility['qualifyingIncrementEstablished']).lower()}`. Do not submit: `{str(eligibility['doNotSubmit']).lower()}`. Proved uncovered receipts: {len(eligibility['provedUncoveredReceipts'])}. Taskmarket award count proves an uncovered receipt: `{str(eligibility['taskmarketAwardCountProvesUncoveredReceipt']).lower()}`. {eligibility['reason']}",
         "",
         "## Day boundaries",
         "",
@@ -72,7 +75,7 @@ def render(summary):
             ],
         ),
         "",
-        f"Pin used for funder end-state: block `{summary['pin']['number']}`, hash `{summary['pin']['hash']}`, unix `{summary['pin']['timestamp']}`, COT `{cot_iso(summary['pin']['timestamp'])}`. Absence means no BNB balance and nonce 0 at this pin. A later credit is outside this capture.",
+        f"Pin used for end-state reads: block `{summary['pin']['number']}`, hash `{summary['pin']['hash']}`, unix `{summary['pin']['timestamp']}`, COT `{cot_iso(summary['pin']['timestamp'])}`. Empty code, balance, and nonce at this pin are pin facts. They do not prove that the address never received BNB.",
         "",
         "## Outflows",
         "",
@@ -94,18 +97,19 @@ def render(summary):
             [[row["cot"], row["block"], link_addr(row["from"]), row["amount"], row["mechanism"], link_tx(row["tx"])] for row in summary["inflows"]],
         ),
         "",
-        "## First BNB funder",
+        "## BNB candidate receipts",
         "",
-        "For each recipient, and for the treasury, the search uses end-of-block balance and nonce through the pin. Empty code, nonce 0, and balance 0 at the pin is recorded as absent: an ordinary account cannot spend BNB without increasing its nonce. Nonempty code is recorded as incomplete, because a contract can receive and forward inside one transaction and end at zero. The first funder is the immediate account that sent the BNB value. On an internal transfer, that account can differ from the transaction signer.",
+        "Token outflow reconciliation above is separate from BNB provenance. The saved capture read code, balance, and nonce at one finalized pin, then for some addresses recorded an end-state crossing block. Empty code at that pin does not prove the address was always an ordinary account. A destroyed contract can leave empty code, zero balance, and zero nonce. " + END_OF_BLOCK_CODE_LIMIT + " Lifetime first and lifetime absence stay unknown. Reading code at every block end would not finish that proof.",
         "",
-        "A shared first funder is one evidence group. The group does not prove that one operator controls the wallets. Recipients with absent or incomplete history stay outside the groups.",
+        "Where the journal contains a successful value transfer or a call trace in the recorded crossing block, that transfer is kept as a candidate. Call traces were not saved for every successful transaction in those blocks. Matching external rows in an asset index, including two empty sets, does not prove that an earlier internal credit was absent. `lifetimeFirstProved` is false on every row.",
         "",
         table(
-            ["Role", "Address", "Coverage", "First funder", "Category", "BNB", "Funder block", "Funder transaction"],
+            ["Role", "Address", "Coverage", "Lifetime first proved", "Candidate sender", "Category", "BNB", "Block", "Candidate transaction"],
             [[
                 row["role"],
                 link_addr(row["address"]),
                 row["coverage"],
+                row.get("lifetimeFirstProved"),
                 link_addr(row["funder"]) if row.get("funder") else "",
                 row.get("category") or "",
                 bnb_cell(row),
@@ -114,23 +118,23 @@ def render(summary):
             ] for row in summary["funders"]],
         ),
         "",
-        f"Evidence-defined recipient groups: **{groups['evidenceGroupCount']}**. Unfunded recipients: {len(groups['unfundedRecipients'])}. Incomplete funder histories: {len(groups['incompleteRecipients'])}. Real operator count: unknown (`realOperatorCount` is null). The task asks how many distinct operators the groups imply. These observations do not supply that number.",
+        f"Candidate recipient groups: **{groups['evidenceGroupCount']}**. Lifetime-unknown recipients: {len(groups['lifetimeUnknownRecipients'])}. That count includes every recipient whose coverage is lifetime-unknown, including recipients that have a candidate sender. Candidate-missing recipients: {len(groups['candidateMissingRecipients'])}. Real operator count: unknown (`realOperatorCount` is null). Treasury lifetime first proved: `{str(groups['treasuryLifetimeFirstProved']).lower()}`. A candidate sender is not a proved lifetime first funder.",
         "",
-        f"The treasury's own first funder is `{groups['treasuryFirstFunder']}`. `sharesTreasuryFirstFunder` is true only when a recipient group has that same funder. `funderIsTreasury` is true when the treasury address itself is the recipient's first funder.",
+        f"The treasury row's candidate sender is `{groups['treasuryFirstFunder']}`. `sharesTreasuryFirstFunder` compares that candidate address with a recipient candidate. It does not prove either one is a lifetime first funder.",
         "",
         groups["operatorNote"],
         "",
     ]
     if after_day:
         lines.append(
-            "First BNB credit after the last block of 10-28 COT, and before the pin: "
+            "Candidate BNB credit dated after the last block of 10-28 COT, and before the pin: "
             + ", ".join(f"{link_addr(row['address'])} at block {row['funderBlock']}" for row in after_day)
             + "."
         )
         lines.append("")
     if groups["evidenceGroups"]:
         lines.append(table(
-            ["Funder", "Recipients", "Linking transactions", "Funder is treasury", "Same funder as treasury"],
+            ["Candidate sender", "Recipients", "Linking transactions", "Sender is treasury", "Same candidate as treasury"],
             [[
                 link_addr(group["funder"]),
                 " ".join(link_addr(item) for item in group["recipients"]),
@@ -140,26 +144,32 @@ def render(summary):
             ] for group in groups["evidenceGroups"]],
         ))
         lines.append("")
+    if groups.get("lifetimeUnknownRecipients"):
+        lines.append("Lifetime-unknown recipients, including those with a candidate sender: " + ", ".join(link_addr(item) for item in groups["lifetimeUnknownRecipients"]) + ".")
+        lines.append("")
+    if groups.get("candidateMissingRecipients"):
+        lines.append("Candidate-missing recipients. No candidate BNB transfer was saved, and lifetime absence is not proved: " + ", ".join(link_addr(item) for item in groups["candidateMissingRecipients"]) + ".")
+        lines.append("")
     if groups["unfundedRecipients"]:
-        lines.append("No observed first BNB funder, empty code through the pin: " + ", ".join(link_addr(item) for item in groups["unfundedRecipients"]) + ".")
+        lines.append("Rows labeled unfunded under a justified lifetime premise: " + ", ".join(link_addr(item) for item in groups["unfundedRecipients"]) + ".")
         lines.append("")
     if groups["incompleteRecipients"]:
-        lines.append("Funder history incomplete, so these recipients are not placed in a group: " + ", ".join(link_addr(item) for item in groups["incompleteRecipients"]) + ".")
+        lines.append("Recipients labeled incomplete stay outside the candidate groups: " + ", ".join(link_addr(item) for item in groups["incompleteRecipients"]) + ".")
         lines.append("")
     lines.extend([
         "## Unexplained transfers",
         "",
         "None." if not summary["unexplainedTransfers"] else "\n".join(link_tx(item) for item in summary["unexplainedTransfers"]),
         "",
-        "An explained token transfer can still have an unknown operator. An absent BNB row is a finished end-state read. An incomplete row would be an unfinished scan and is listed separately above.",
+        "An explained token transfer can still have an unknown operator. Lifetime BNB absence is a separate claim and is not established for the empty pin rows.",
         "",
         "## Coverage and limits",
         "",
         f"Primary route: `{PRIMARY}`. `eth_getLogs` was read in two full partitions, 50000-block and 25000-block steps, for treasury sends and treasury receipts. A page of 1000 logs is rejected as a possible cap. The token-transfer index `nr_getAssetTransfers` (category 20, 90000-block steps, 100000-block provider cap) matches the outflow multiset, including any self-transfer.",
         "",
-        "Normal BNB transfers are top-level transactions in the first activity block with `to` equal to the address and positive value, status 1. Internal BNB transfers are used only when that index's external set matches those top-level transfers and a `callTracer` trace confirms the credit. Category `external` in the funder table is a normal transfer. Category `internal` is a value call inside a transaction. If the earliest normal transfer is not at transaction index 0 and the internal index is incomplete, the row stays incomplete.",
+        "A candidate category `external` is a top-level value transfer with a successful receipt. Category `internal` is a value call inside a saved `callTracer` trace. Internal coverage of a block is complete only when every successful transaction in that block has a call trace. The asset-transfer index is not that proof. This capture's crossing blocks are not fully traced, so those candidates stay lifetime-unknown.",
         "",
-        "The treasury balance at block 1 is 0, so the balance method reached archive state. The funder search stops at the pin above.",
+        "The treasury balance at block 1 is 0, so that one historical balance read reached archive state. It does not justify lifetime ordinary-account history. " + END_OF_BLOCK_CODE_LIMIT + " This capture does not contain a full-chain trace index, and this page does not invent one. No recipient row in this capture is offered as a finished lifetime history.",
         "",
         f"Secondary route `{SECONDARY}` supplied chain id, the four boundary headers, and one outflow receipt. It is a hash check, not the log index.",
         "",

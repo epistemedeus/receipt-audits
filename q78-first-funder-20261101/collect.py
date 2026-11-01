@@ -18,13 +18,13 @@ from audit import (
     TRACE_PARAM,
     TRANSFER,
     TREASURY,
+    END_OF_BLOCK_CODE_LIMIT,
+    assemble_block_credits,
     asset_query,
     bind_window,
     chunk_ranges,
-    decide_funder,
     pad_address,
     quantity,
-    walk_value,
 )
 
 HERE = Path(__file__).resolve().parent
@@ -375,77 +375,50 @@ def run():
             "operatorControlProved": False,
             "note": "",
         }
+        row["lifetimeFirstProved"] = False
+        row["lifetimeAbsenceProved"] = False
+        row["lifetimePremiseJustified"] = False
         if code != "0x":
-            row["note"] = "code is present at the pin, so an end-state search is not a lifetime first-funder proof"
+            row["coverage"] = "incomplete"
+            row["note"] = "code is present at the pin, so an end-state search is not a proved lifetime first funder"
         elif balance == 0 and nonce == 0:
-            row["coverage"] = "absent"
-            row["note"] = "empty code, nonce 0, and balance 0 at the pin; an EOA cannot have spent a prior BNB credit without increasing nonce"
+            row["coverage"] = "lifetime-unknown"
+            row["note"] = "No candidate transfer was saved. Empty code, balance, and nonce at the pin do not prove lifetime absence. " + END_OF_BLOCK_CODE_LIMIT
         else:
             block = first_activity(rpc, address, pin_no)
             row["firstActivityBlock"] = block
             state_of(rpc, address, block - 1)
             state_of(rpc, address, block)
             full = rpc("eth_getBlockByNumber", [hex(block), True])
-            normals = []
+            receipts = {}
+            traces = {}
             for tx in full["transactions"]:
-                if (tx.get("to") or "").lower() != address or quantity(tx["value"]) <= 0:
+                if not isinstance(tx, dict) or not tx.get("hash"):
                     continue
-                receipt = rpc("eth_getTransactionReceipt", [tx["hash"]])
-                if quantity(receipt["status"]) != 1:
+                tx_hash = tx["hash"].lower()
+                if (tx.get("to") or "").lower() == address and quantity(tx.get("value", "0x0")) > 0:
+                    receipt = rpc("eth_getTransactionReceipt", [tx["hash"]])
+                    receipts[tx_hash] = quantity(receipt["status"])
+            indexed = asset_pages(rpc, asset_query(address, block))
+            for item in indexed:
+                if item.get("category") != "internal" or quantity(item.get("blockNum", "0x0")) != block:
                     continue
-                normals.append({
-                    "block": block,
-                    "tx": tx["hash"].lower(),
-                    "txIndex": quantity(tx["transactionIndex"]),
-                    "from": tx["from"].lower(),
-                    "to": address,
-                    "value": quantity(tx["value"]),
-                    "status": 1,
-                })
-            asset = asset_pages(rpc, asset_query(address, block))
-            asset_ext = {}
-            internal_items = []
-            for item in asset:
-                if quantity(item["blockNum"]) != block or item.get("to", "").lower() != address:
+                tx_hash = item["hash"].lower()
+                if tx_hash in traces:
                     continue
-                value = quantity(item["value"])
-                if value <= 0 or int(item.get("receiptsStatus", 0)) != 1:
-                    continue
-                if item.get("category") == "external":
-                    asset_ext[item["hash"].lower()] = (item["from"].lower(), value)
-                elif item.get("category") == "internal":
-                    internal_items.append(item)
-            internal_complete = asset_ext == {item["tx"]: (item["from"], item["value"]) for item in normals}
-            internals = []
-            trace_missing = False
-            if internal_complete and internal_items:
-                traced = set()
-                for item in internal_items:
-                    tx_hash = item["hash"].lower()
-                    if tx_hash in traced:
-                        continue
-                    traced.add(tx_hash)
-                    tx = rpc("eth_getTransactionByHash", [tx_hash])
-                    receipt = rpc("eth_getTransactionReceipt", [tx_hash])
-                    if quantity(receipt["status"]) != 1:
-                        continue
-                    traced_call = rpc("debug_traceTransaction", [tx_hash, TRACE_PARAM], optional=True)
-                    if traced_call is None:
-                        trace_missing = True
-                        break
-                    found = []
-                    walk_value(traced_call, address, {
-                        "block": block,
-                        "tx": tx_hash,
-                        "txIndex": quantity(tx["transactionIndex"]),
-                    }, found, [0])
-                    internals.extend(credit for credit in found if credit["category"] != "external")
-            if trace_missing:
-                coverage, chosen, note = "incomplete", None, "an internal BNB credit was indexed but its call trace was unavailable"
-            else:
-                coverage, chosen, note = decide_funder(normals, internals, internal_complete and not trace_missing)
-            row["coverage"] = coverage
-            row["note"] = note
+                receipt = rpc("eth_getTransactionReceipt", [tx_hash])
+                receipts[tx_hash] = quantity(receipt["status"])
+                traced_call = rpc("debug_traceTransaction", [tx_hash, TRACE_PARAM], optional=True)
+                if traced_call is not None:
+                    traces[tx_hash] = traced_call
+            assessment = assemble_block_credits(full["transactions"], receipts, traces, address, block)
+            row["coverage"] = "lifetime-unknown"
+            row["blockCoverageComplete"] = assessment["complete"]
+            row["note"] = "Candidate sender only. This is not a proved lifetime first funder. " + END_OF_BLOCK_CODE_LIMIT + " " + "; ".join(assessment["limits"])
+            chosen = None
+            if assessment["complete"] and assessment["credits"]:
+                chosen = sorted(assessment["credits"], key=lambda c: (c["txIndex"], c["order"], c["tx"]))[0]
+                row["note"] = "Earliest credit in the crossing block under full call traces. Block-local traces are not a lifetime first. " + END_OF_BLOCK_CODE_LIMIT
             if chosen:
                 row.update({
                     "funder": chosen["from"],

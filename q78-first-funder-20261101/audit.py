@@ -16,6 +16,18 @@ PRIMARY = "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3"
 SECONDARY = "https://bsc-dataseed.bnbchain.org"
 TASK_ID = "0x8c14b4bc3e4017d3aac82de9eb59bb9a1fa53c331a23845274ff435eea936ec6"
 TRACE_PARAM = {"tracer": "callTracer", "timeout": "10s"}
+# Block-boundary code cannot prove an ordinary-account lifetime. EIP-6780
+# specification item 2 keeps SELFDESTRUCT deletion when the contract was
+# created in the same transaction, so create, fund, and delete can finish
+# between samples. This is a limit, not a captured-recipient finding and
+# not a BSC fork-version claim.
+END_OF_BLOCK_CODE_LIMIT = (
+    "End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. "
+    "A contract can be created, funded, and SELFDESTRUCT in one transaction. "
+    "EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. "
+    "Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. "
+    "This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim."
+)
 TASK_PHRASES = (
     "0x7C34E9e21eE28A49Ff0b84B61774119E6633359f",
     "0x90c8889f428F9Ebb77BB8f15CAD3a50a9aC680df",
@@ -151,14 +163,30 @@ def select_first_credit(credits):
 
 
 def group_recipients(funders, treasury=TREASURY):
-    """Group by observed first funder. Do not treat a group as proved common control."""
+    """Group candidate senders. A group is not a proved lifetime first funder.
+
+    `lifetimeUnknownRecipients` lists every recipient whose coverage is
+    `lifetime-unknown`, including rows that still have a candidate sender.
+    `candidateMissingRecipients` is the subset with no candidate. Legacy
+    `treasuryFirstFunder` is that candidate sender, not a proved lifetime first.
+    An empty `incompleteRecipients` list does not mean lifetime history is known.
+    """
     treasury_row = next(r for r in funders if r["address"] == treasury and r["role"] == "treasury")
     treasury_funder = treasury_row.get("funder")
     groups = {}
     unfunded = []
     incomplete = []
+    unknown = []
+    candidate_missing = []
     for row in funders:
         if row["role"] != "recipient":
+            continue
+        if row["coverage"] == "lifetime-unknown":
+            unknown.append(row["address"])
+            if not row.get("funder"):
+                candidate_missing.append(row["address"])
+                continue
+            groups.setdefault(row["funder"], []).append(row)
             continue
         if row["coverage"] == "incomplete":
             incomplete.append(row["address"])
@@ -177,28 +205,119 @@ def group_recipients(funders, treasury=TREASURY):
             "funderIsTreasury": funder == treasury,
             "sharesTreasuryFirstFunder": bool(treasury_funder) and funder == treasury_funder,
             "operatorControlProved": False,
+            "lifetimeFirstProved": False,
         })
     return {
         "evidenceGroups": evidence,
         "evidenceGroupCount": len(evidence),
         "unfundedRecipients": sorted(unfunded),
         "incompleteRecipients": sorted(incomplete),
+        "lifetimeUnknownRecipients": sorted(unknown),
+        "candidateMissingRecipients": sorted(candidate_missing),
         "treasuryFirstFunder": treasury_funder,
+        "treasuryLifetimeFirstProved": False,
         "realOperatorCount": None,
-        "operatorNote": "A shared first BNB funder is an evidence group. It does not prove common operator control. Unfunded and incomplete recipients are not counted as proved operators.",
+        "operatorNote": (
+            "A shared candidate sender is an evidence group. It is not a proved lifetime first funder and it is not proved common operator control. "
+            "lifetimeUnknownRecipients counts every lifetime-unknown recipient, including rows that have a candidate sender. "
+            "candidateMissingRecipients is the subset with no saved candidate. "
+            "An empty incompleteRecipients list is not a completed lifetime history. "
+            + END_OF_BLOCK_CODE_LIMIT
+            + " Real operator count is unknown."
+        ),
     }
 
 
-def coverage_label(balance, nonce, code_size, credits, archive_ok):
-    if not archive_ok:
+def coverage_label(balance, nonce, code_size, credits, archive_ok, premise_justified=False):
+    """Label lifetime BNB provenance from samples this package can use.
+
+    This function does not return `absent`. Empty code, balance, and nonce
+    stay `lifetime-unknown`. `lifetime_premise_justified` never reports an
+    end-of-block code map as justified, so that map cannot select `observed`.
+    `balance` and `nonce` stay in the signature for callers that still pass
+    the pin sample; they do not prove absence.
+    """
+    if not archive_ok or code_size > 0:
         return "incomplete"
-    if credits:
+    if premise_justified and credits:
         return "observed"
-    if balance == 0 and nonce == 0 and code_size == 0:
-        return "absent"
-    if balance == 0 and nonce == 0 and code_size > 0:
-        return "incomplete"
-    return "incomplete"
+    return "lifetime-unknown"
+
+
+def lifetime_premise_justified(code_by_block):
+    """Return False. No end-of-block code map justifies ordinary-account history.
+
+    `code_by_block` is the caller's block-boundary samples. A missing map, a
+    pin sample, a gap, nonempty code, and a gapless map of `0x` from block 0
+    are the same result. See `END_OF_BLOCK_CODE_LIMIT`. This function does
+    not build a trace index and does not invent historical coverage.
+    """
+    if isinstance(code_by_block, dict):
+        return False
+    return False
+
+
+def assemble_block_credits(transactions, receipts_by_hash, traces_by_hash, address, block):
+    """Credits visible in the supplied block body, receipts, and call traces.
+
+    Completeness does not look at an asset-transfer index. Equal external sets,
+    including two empty sets, do not mean earlier internal credits were indexed.
+    A successful transaction without a call trace leaves coverage incomplete.
+    Top-level value transfers with a successful receipt stay in `credits` as
+    observed candidates either way.
+    """
+    credits = []
+    limits = []
+    if not isinstance(transactions, list):
+        return {"complete": False, "credits": [], "limits": ["block transaction list is missing"]}
+    if not transactions:
+        return {
+            "complete": True,
+            "credits": [],
+            "limits": ["the block contains no transactions; an empty asset index for a nonempty block is a different claim"],
+        }
+    complete = True
+    for tx in transactions:
+        if not isinstance(tx, dict) or not tx.get("hash"):
+            complete = False
+            limits.append("a block transaction object is missing")
+            continue
+        tx_hash = tx["hash"].lower()
+        if tx_hash not in receipts_by_hash:
+            complete = False
+            limits.append("a transaction receipt is missing")
+            continue
+        if int(receipts_by_hash[tx_hash]) != 1:
+            continue
+        trace = traces_by_hash.get(tx_hash)
+        if trace is None:
+            complete = False
+            limits.append("a successful transaction has no call trace")
+            if (tx.get("to") or "").lower() == address.lower() and quantity(tx.get("value", "0x0")) > 0:
+                credits.append({
+                    "block": block,
+                    "tx": tx_hash,
+                    "txIndex": quantity(tx["transactionIndex"]),
+                    "order": 0,
+                    "from": (tx.get("from") or "").lower(),
+                    "to": address.lower(),
+                    "value": quantity(tx.get("value", "0x0")),
+                    "status": 1,
+                    "category": "external",
+                })
+            continue
+        found = []
+        walk_value(trace, address.lower(), {
+            "block": block,
+            "tx": tx_hash,
+            "txIndex": quantity(tx["transactionIndex"]),
+        }, found, [0])
+        credits.extend(found)
+    if not complete and not any(item.startswith("a ") for item in limits):
+        limits.append("internal coverage of the block is incomplete")
+    if complete:
+        limits.append("every successful transaction in this block has a call trace")
+    return {"complete": complete, "credits": credits, "limits": limits}
 
 
 def asset_query(address, block, page_key=None):
@@ -217,12 +336,11 @@ def asset_query(address, block, page_key=None):
 
 
 def decide_funder(normals, internals, internal_complete):
-    """Pick the earliest positive credit.
+    """Pick the earliest supplied credit inside one block.
 
-    `normals` are successful top-level BNB transfers from the full block.
-    `internals` are trace-confirmed internal credits. They may be used only
-    when `internal_complete` says the block's normal set matched the index,
-    so an earlier internal transfer was not omitted.
+    `internal_complete` is meaningful only when `assemble_block_credits`
+    produced it from full call traces. Equality of external index rows is
+    not that producer. This helper does not decide lifetime absence.
     """
     credits = []
     for item in normals:
@@ -241,7 +359,7 @@ def decide_funder(normals, internals, internal_complete):
     if not internal_complete and int(chosen["txIndex"]) != 0:
         return "incomplete", None, "earlier transactions in the block have no internal-transfer coverage"
     kind = "normal transfer" if chosen["category"] == "external" else chosen["category"] + " transfer"
-    return "observed", chosen, "empty code at the pin; first end-state activity block; " + kind
+    return "observed", chosen, "block-local credit only; " + kind
 
 
 def walk_value(frame, address, meta, out, state, depth=0, failed=False):
@@ -291,60 +409,83 @@ def saved_asset_transfers(good, address, block):
     raise AuditError("asset transfer pagination did not finish")
 
 
+def qualifying_increment(predicate, outflow_count):
+    """Cross-venue accepted coverage. Award count 0 is not an uncovered receipt."""
+    comments = predicate.get("colonyIssuerDecisions") or []
+    found = {
+        "treasuryFundingAccepted": False,
+        "dayTransfersAndFourFundersCovered": False,
+        "postCutoffFunderAccepted": False,
+    }
+    ids = {key: None for key in found}
+    for item in comments:
+        body = item.get("body") or ""
+        comment_id = item.get("id")
+        if "Accepted, Q78" in body and "0xe0f7aeee" in body:
+            found["treasuryFundingAccepted"] = True
+            ids["treasuryFundingAccepted"] = comment_id
+        if "17 transfers" in body and "4 first-funder" in body and "already covered" in body:
+            found["dayTransfersAndFourFundersCovered"] = True
+            ids["dayTransfersAndFourFundersCovered"] = comment_id
+        if "Q78 accepted" in body and "0x5bd8ede5" in body:
+            found["postCutoffFunderAccepted"] = True
+            ids["postCutoffFunderAccepted"] = comment_id
+    proved_uncovered = []
+    parts = []
+    if found["treasuryFundingAccepted"]:
+        parts.append("an acceptance comment names treasury funding 0xe0f7aeee")
+    if found["dayTransfersAndFourFundersCovered"]:
+        parts.append("an issuer comment says the 17 transfers and 4 first-funder transactions in that claim were already covered; this capture counts %s token outflows and the comment does not list those hashes" % outflow_count)
+    if found["postCutoffFunderAccepted"]:
+        parts.append("an acceptance comment names post-cutoff 0x5bd8ede5")
+    if not parts:
+        parts.append("the saved comments do not identify an uncovered receipt")
+    reason = "; ".join(parts) + ". Taskmarket awardCount is a separate venue and does not prove an uncovered receipt. No saved receipt is provably outside the accepted coverage."
+    reason = reason[:1].upper() + reason[1:]
+    return {
+        "qualifyingIncrementEstablished": bool(proved_uncovered),
+        "doNotSubmit": not bool(proved_uncovered),
+        "taskmarketAwardCount": predicate.get("awardCount"),
+        "taskmarketAwardCountProvesUncoveredReceipt": False,
+        "issuerStatements": found,
+        "issuerStatementIds": ids,
+        "outflowCount": outflow_count,
+        "provedUncoveredReceipts": proved_uncovered,
+        "reason": reason,
+    }
+
+
+def journal_has(good, url, method, params):
+    return json.dumps([url, method, params], sort_keys=True) in good
+
+
 def funder_from_journal(good, address, block):
+    """Recompute block credits from saved receipts and traces.
+
+    The asset-transfer index is not a completeness proof and is not read here.
+    Missing traces leave the assessment incomplete and keep any credit the
+    saved receipt or trace actually shows.
+    """
     full = saved_get(good, PRIMARY, "eth_getBlockByNumber", [hex(block), True])
     need(n(full["number"]) == block, "full block number mismatch")
-    normals = []
+    need(isinstance(full.get("transactions"), list), "full block did not include transaction objects")
+    receipts = {}
+    traces = {}
     for tx in full["transactions"]:
-        if not isinstance(tx, dict):
-            raise AuditError("full block did not include transaction objects")
-        if (tx.get("to") or "").lower() != address or quantity(tx["value"]) <= 0:
+        if not isinstance(tx, dict) or not tx.get("hash"):
             continue
-        receipt = saved_get(good, PRIMARY, "eth_getTransactionReceipt", [tx["hash"]])
-        if quantity(receipt["status"]) != 1:
-            continue
-        normals.append({
-            "block": block,
-            "tx": tx["hash"].lower(),
-            "txIndex": quantity(tx["transactionIndex"]),
-            "from": tx["from"].lower(),
-            "to": address,
-            "value": quantity(tx["value"]),
-            "status": 1,
-        })
-    asset_ext = {}
-    internal_items = []
-    for item in saved_asset_transfers(good, address, block):
-        item_block = quantity(item["blockNum"])
-        if item_block != block or item.get("to", "").lower() != address:
-            continue
-        value = quantity(item["value"])
-        if value <= 0 or int(item.get("receiptsStatus", 0)) != 1:
-            continue
-        if item.get("category") == "external":
-            asset_ext[item["hash"].lower()] = (item["from"].lower(), value)
-        elif item.get("category") == "internal":
-            internal_items.append(item)
-    normal_map = {row["tx"]: (row["from"], row["value"]) for row in normals}
-    internal_complete = asset_ext == normal_map
-    internals = []
-    if internal_complete and internal_items:
-        for item in internal_items:
-            tx_hash = item["hash"].lower()
-            trace_key = json.dumps([PRIMARY, "debug_traceTransaction", [tx_hash, TRACE_PARAM]], sort_keys=True)
-            if trace_key not in good:
-                return "incomplete", None, "an internal BNB credit was indexed but its call trace was unavailable"
-            tx = saved_get(good, PRIMARY, "eth_getTransactionByHash", [tx_hash])
-            receipt = saved_get(good, PRIMARY, "eth_getTransactionReceipt", [tx_hash])
-            need(quantity(receipt["status"]) == 1, "internal funder transaction reverted")
-            found = []
-            walk_value(good[trace_key], address, {
-                "block": block,
-                "tx": tx_hash,
-                "txIndex": quantity(tx["transactionIndex"]),
-            }, found, [0])
-            internals.extend(row for row in found if row["category"] != "external")
-    return decide_funder(normals, internals, internal_complete)
+        tx_hash = tx["hash"].lower()
+        for params in ([tx["hash"]], [tx_hash]):
+            if journal_has(good, PRIMARY, "eth_getTransactionReceipt", params):
+                receipt = saved_get(good, PRIMARY, "eth_getTransactionReceipt", params)
+                receipts[tx_hash] = quantity(receipt["status"])
+                break
+        for params in ([tx["hash"], TRACE_PARAM], [tx_hash, TRACE_PARAM]):
+            key = json.dumps([PRIMARY, "debug_traceTransaction", params], sort_keys=True)
+            if key in good:
+                traces[tx_hash] = good[key]
+                break
+    return assemble_block_credits(full["transactions"], receipts, traces, address, block)
 
 
 def route_limits(rows):
@@ -492,29 +633,45 @@ def analyse(evidence_dir=None):
         code = saved_get(good, PRIMARY, "eth_getCode", [addr, hex(pin_no)])
         need(bal == row["balanceAtPin"] and nonce == row["nonceAtPin"], "pin state does not match the funder row")
         need(code.startswith("0x") and (len(code) - 2) // 2 == row["codeBytes"], "code size does not match the funder row")
-        if bal == 0 and nonce == 0 and code == "0x":
-            need(row["coverage"] == "absent" and row["funder"] is None, "empty end state is absence, not a funder")
-            continue
+        row["captureCoverage"] = row["coverage"]
+        row["lifetimePremiseJustified"] = lifetime_premise_justified({pin_no: code})
+        row["lifetimeFirstProved"] = False
+        row["lifetimeAbsenceProved"] = False
+        row["blockCoverageComplete"] = False
         if code != "0x":
-            need(row["coverage"] == "incomplete" and row["funder"] is None, "nonempty code is not a proved lifetime first funder")
+            row["coverage"] = "incomplete"
+            row["candidateLimit"] = "nonempty code at the pin; an end-state search is not a proved lifetime first funder"
+            row["note"] = row["candidateLimit"]
+            need(row["funder"] is None, "nonempty code row invented a lifetime funder")
+            continue
+        if bal == 0 and nonce == 0:
+            row["coverage"] = "lifetime-unknown"
+            row["candidateLimit"] = "No candidate transfer was saved. Empty code, balance, and nonce at the pin do not prove lifetime absence. " + END_OF_BLOCK_CODE_LIMIT
+            row["note"] = row["candidateLimit"]
+            need(row["funder"] is None, "empty pin row invented a lifetime funder")
             continue
         fb = row["firstActivityBlock"]
         need(isinstance(fb, int) and fb > 0, "missing first activity block")
-        need(quantity(saved_get(good, PRIMARY, "eth_getBalance", [addr, hex(fb - 1)])) == 0, "balance before first activity is not zero")
-        need(quantity(saved_get(good, PRIMARY, "eth_getTransactionCount", [addr, hex(fb - 1)])) == 0, "nonce before first activity is not zero")
+        need(quantity(saved_get(good, PRIMARY, "eth_getBalance", [addr, hex(fb - 1)])) == 0, "balance before the recorded crossing is not zero")
+        need(quantity(saved_get(good, PRIMARY, "eth_getTransactionCount", [addr, hex(fb - 1)])) == 0, "nonce before the recorded crossing is not zero")
         at_bal = quantity(saved_get(good, PRIMARY, "eth_getBalance", [addr, hex(fb)]))
         at_nonce = quantity(saved_get(good, PRIMARY, "eth_getTransactionCount", [addr, hex(fb)]))
-        need(at_bal > 0 or at_nonce > 0, "first activity block has no end-state activity")
-        coverage, chosen, _note = funder_from_journal(good, addr, fb)
-        need(row["coverage"] == coverage, "funder coverage does not match the journal")
-        if coverage == "observed":
-            need(chosen["from"] == row["funder"] and chosen["tx"] == row["funderTx"], "funder transaction does not match the journal")
-            need(chosen["block"] == row["funderBlock"] == fb, "funder block mismatch")
-            need(chosen["txIndex"] == row["funderTxIndex"], "funder transaction index mismatch")
-            need(chosen["category"] == row["category"], "funder category mismatch")
-            need(int(row["valueAtoms"]) == chosen["value"], "funder value mismatch")
-        else:
-            need(row["funder"] is None, "incomplete history invented a funder")
+        need(at_bal > 0 or at_nonce > 0, "recorded crossing block has no end-state activity")
+        assessment = funder_from_journal(good, addr, fb)
+        row["blockCoverageComplete"] = assessment["complete"]
+        row["coverage"] = "lifetime-unknown"
+        matches = [
+            credit for credit in assessment["credits"]
+            if credit["tx"] == row["funderTx"]
+            and credit["from"] == row["funder"]
+            and credit["category"] == row["category"]
+            and credit["value"] == int(row["valueAtoms"])
+            and credit["txIndex"] == row["funderTxIndex"]
+            and credit["block"] == row["funderBlock"] == fb
+        ]
+        need(matches, "recorded candidate is not among the credits saved for the crossing block")
+        row["candidateLimit"] = "Candidate sender only. This is not a proved lifetime first funder. " + END_OF_BLOCK_CODE_LIMIT + " " + "; ".join(assessment["limits"])
+        row["note"] = row["candidateLimit"]
         if isinstance(row.get("valueAtoms"), int):
             row["bnb"] = units(row["valueAtoms"])
     groups = group_recipients(funder_doc)
@@ -558,8 +715,9 @@ def analyse(evidence_dir=None):
             "treasuryAfter": units(after),
             "balanceDeltaAtoms": str(after - before),
         },
-        "reconciliation": "treasury balance change equals inflow logs minus outflow logs, to the base unit",
+        "reconciliation": "treasury token balance change equals token inflow logs minus token outflow logs, to the base unit. This identity does not prove lifetime BNB provenance.",
         "groups": groups,
+        "eligibility": qualifying_increment(predicate, len(external)),
         "unexplainedTransfers": unexplained,
         "limits": route_limits(rows),
         "acceptance": {
@@ -602,7 +760,7 @@ def write_derived(summary, out_dir=None):
 
     dump("outflows.csv", summary["outflows"], ["tx", "logIndex", "block", "timestamp", "cot", "to", "atoms", "amount", "mechanism", "blockHash"])
     dump("inflows.csv", summary["inflows"], ["tx", "logIndex", "block", "timestamp", "cot", "from", "atoms", "amount", "mechanism"])
-    dump("funders.csv", summary["funders"], ["role", "address", "coverage", "funder", "funderTx", "funderBlock", "funderTxIndex", "category", "valueAtoms", "bnb", "balanceAtPin", "nonceAtPin", "codeBytes", "note"])
+    dump("funders.csv", summary["funders"], ["role", "address", "coverage", "captureCoverage", "lifetimeFirstProved", "lifetimeAbsenceProved", "lifetimePremiseJustified", "blockCoverageComplete", "funder", "funderTx", "funderBlock", "funderTxIndex", "category", "valueAtoms", "bnb", "balanceAtPin", "nonceAtPin", "codeBytes", "candidateLimit"])
     group_rows = []
     for group in summary["groups"]["evidenceGroups"]:
         group_rows.append({
@@ -612,8 +770,9 @@ def write_derived(summary, out_dir=None):
             "funderIsTreasury": group["funderIsTreasury"],
             "sharesTreasuryFirstFunder": group["sharesTreasuryFirstFunder"],
             "operatorControlProved": group["operatorControlProved"],
+            "lifetimeFirstProved": group["lifetimeFirstProved"],
         })
-    dump("groups.csv", group_rows, ["funder", "recipients", "linkingTransactions", "funderIsTreasury", "sharesTreasuryFirstFunder", "operatorControlProved"])
+    dump("groups.csv", group_rows, ["funder", "recipients", "linkingTransactions", "funderIsTreasury", "sharesTreasuryFirstFunder", "operatorControlProved", "lifetimeFirstProved"])
     with (out / "rows.jsonl").open("w") as handle:
         by = {r["address"]: r for r in summary["funders"] if r["role"] == "recipient"}
         for row in summary["outflows"]:
@@ -628,9 +787,10 @@ def write_derived(summary, out_dir=None):
                 "amount": row["amount"],
                 "mechanism": row["mechanism"],
                 "funderCoverage": funder["coverage"],
-                "firstFunder": funder.get("funder"),
-                "firstFunderTx": funder.get("funderTx"),
-                "firstFunderCategory": funder.get("category"),
+                "lifetimeFirstProved": funder.get("lifetimeFirstProved"),
+                "candidateFunder": funder.get("funder"),
+                "candidateFunderTx": funder.get("funderTx"),
+                "candidateCategory": funder.get("category"),
             }, separators=(",", ":")) + "\n")
     return out
 

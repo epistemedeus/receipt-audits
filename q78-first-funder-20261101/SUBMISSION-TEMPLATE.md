@@ -1,6 +1,8 @@
 # Submission template
 
-Root fills the three blanks. This file was not submitted.
+Do not submit. No qualifying increment is established.
+
+Root does not fill these blanks for a claim. They stay unset.
 
 - Public audit link: `<unset>`
 - BSC wallet: `<unset>`

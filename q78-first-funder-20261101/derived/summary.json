@@ -65,7 +65,7 @@
     "treasuryAfter": "825662396.951986305673581681",
     "balanceDeltaAtoms": "9465860504603865910684550"
   },
-  "reconciliation": "treasury balance change equals inflow logs minus outflow logs, to the base unit",
+  "reconciliation": "treasury token balance change equals token inflow logs minus token outflow logs, to the base unit. This identity does not prove lifetime BNB provenance.",
   "groups": {
     "evidenceGroups": [
       {
@@ -78,7 +78,8 @@
         ],
         "funderIsTreasury": false,
         "sharesTreasuryFirstFunder": false,
-        "operatorControlProved": false
+        "operatorControlProved": false,
+        "lifetimeFirstProved": false
       },
       {
         "funder": "0x67f5d43cbd8129bf41aae37a609aac44bd55dd1f",
@@ -90,7 +91,8 @@
         ],
         "funderIsTreasury": false,
         "sharesTreasuryFirstFunder": false,
-        "operatorControlProved": false
+        "operatorControlProved": false,
+        "lifetimeFirstProved": false
       },
       {
         "funder": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
@@ -104,7 +106,8 @@
         ],
         "funderIsTreasury": true,
         "sharesTreasuryFirstFunder": false,
-        "operatorControlProved": false
+        "operatorControlProved": false,
+        "lifetimeFirstProved": false
       },
       {
         "funder": "0xca7ded7e4f4ba8ab3b10009236ae6d1b95094589",
@@ -116,21 +119,55 @@
         ],
         "funderIsTreasury": false,
         "sharesTreasuryFirstFunder": false,
-        "operatorControlProved": false
+        "operatorControlProved": false,
+        "lifetimeFirstProved": false
       }
     ],
     "evidenceGroupCount": 4,
-    "unfundedRecipients": [
+    "unfundedRecipients": [],
+    "incompleteRecipients": [],
+    "lifetimeUnknownRecipients": [
+      "0x2ae18c3b2fc18545edd35beeaef97cc2ed908a02",
+      "0x3d98800c64c345950e1eaaa076d88c12d1bf5f37",
+      "0x8c062dc5d775b7d5efc168f75a875f392f53dcdf",
+      "0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c",
+      "0xa21fc88bd8c17cae306089d7b00a1f5cd5ad3ee9",
+      "0xabc2c3daffa4c1963299da225c25f2aa7d4ddf62",
+      "0xca58696564492ef9c3229c89072365b253bda246",
+      "0xdf4ff9d2f45f99f11a90b16f277d4b7edddb72a5",
+      "0xfb200657f7266157a45dfcc6c09690726daa24e6",
+      "0xfdf05af8ddce3621f01713e01721d6e9ad702ea8"
+    ],
+    "candidateMissingRecipients": [
       "0x3d98800c64c345950e1eaaa076d88c12d1bf5f37",
       "0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c",
       "0xabc2c3daffa4c1963299da225c25f2aa7d4ddf62",
       "0xdf4ff9d2f45f99f11a90b16f277d4b7edddb72a5",
       "0xfdf05af8ddce3621f01713e01721d6e9ad702ea8"
     ],
-    "incompleteRecipients": [],
     "treasuryFirstFunder": "0x5ba434b40be6cfc7033bf8d4545320fa609a4268",
+    "treasuryLifetimeFirstProved": false,
     "realOperatorCount": null,
-    "operatorNote": "A shared first BNB funder is an evidence group. It does not prove common operator control. Unfunded and incomplete recipients are not counted as proved operators."
+    "operatorNote": "A shared candidate sender is an evidence group. It is not a proved lifetime first funder and it is not proved common operator control. lifetimeUnknownRecipients counts every lifetime-unknown recipient, including rows that have a candidate sender. candidateMissingRecipients is the subset with no saved candidate. An empty incompleteRecipients list is not a completed lifetime history. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. Real operator count is unknown."
+  },
+  "eligibility": {
+    "qualifyingIncrementEstablished": false,
+    "doNotSubmit": true,
+    "taskmarketAwardCount": 0,
+    "taskmarketAwardCountProvesUncoveredReceipt": false,
+    "issuerStatements": {
+      "treasuryFundingAccepted": true,
+      "dayTransfersAndFourFundersCovered": true,
+      "postCutoffFunderAccepted": true
+    },
+    "issuerStatementIds": {
+      "treasuryFundingAccepted": "5e50258f-95c4-42ea-92db-e3ce6de5d5d6",
+      "dayTransfersAndFourFundersCovered": "d9490ee9-e138-4c86-8f35-69873a37248f",
+      "postCutoffFunderAccepted": "44d6b171-0703-4945-852c-c8dc1a313839"
+    },
+    "outflowCount": 17,
+    "provedUncoveredReceipts": [],
+    "reason": "An acceptance comment names treasury funding 0xe0f7aeee; an issuer comment says the 17 transfers and 4 first-funder transactions in that claim were already covered; this capture counts 17 token outflows and the comment does not list those hashes; an acceptance comment names post-cutoff 0x5bd8ede5. Taskmarket awardCount is a separate venue and does not prove an uncovered receipt. No saved receipt is provably outside the accepted coverage."
   },
   "unexplainedTransfers": [],
   "limits": {
@@ -420,7 +457,7 @@
     {
       "role": "recipient",
       "address": "0x2ae18c3b2fc18545edd35beeaef97cc2ed908a02",
-      "coverage": "observed",
+      "coverage": "lifetime-unknown",
       "funder": "0x10ed43c718714eb63d5aa57b78b54704e256024e",
       "funderTx": "0x5bd8ede524ed31fc2a86136e6a8e452b4c1b18aa420178fe895d8eca72bed6ef",
       "funderBlock": 130632004,
@@ -432,13 +469,19 @@
       "codeBytes": 0,
       "firstActivityBlock": 130632004,
       "operatorControlProved": false,
-      "note": "empty code at the pin; first end-state activity block; internal transfer",
+      "note": "Candidate sender only. This is not a proved lifetime first funder. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing",
+      "captureCoverage": "observed",
+      "lifetimePremiseJustified": false,
+      "lifetimeFirstProved": false,
+      "lifetimeAbsenceProved": false,
+      "blockCoverageComplete": false,
+      "candidateLimit": "Candidate sender only. This is not a proved lifetime first funder. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing",
       "bnb": "0.000006257934517396"
     },
     {
       "role": "recipient",
       "address": "0x3d98800c64c345950e1eaaa076d88c12d1bf5f37",
-      "coverage": "absent",
+      "coverage": "lifetime-unknown",
       "funder": null,
       "funderTx": null,
       "funderBlock": null,
@@ -450,12 +493,18 @@
       "codeBytes": 0,
       "firstActivityBlock": null,
       "operatorControlProved": false,
-      "note": "empty code, nonce 0, and balance 0 at the pin; an EOA cannot have spent a prior BNB credit without increasing nonce"
+      "note": "No candidate transfer was saved. Empty code, balance, and nonce at the pin do not prove lifetime absence. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim.",
+      "captureCoverage": "absent",
+      "lifetimePremiseJustified": false,
+      "lifetimeFirstProved": false,
+      "lifetimeAbsenceProved": false,
+      "blockCoverageComplete": false,
+      "candidateLimit": "No candidate transfer was saved. Empty code, balance, and nonce at the pin do not prove lifetime absence. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim."
     },
     {
       "role": "recipient",
       "address": "0x8c062dc5d775b7d5efc168f75a875f392f53dcdf",
-      "coverage": "observed",
+      "coverage": "lifetime-unknown",
       "funder": "0x67f5d43cbd8129bf41aae37a609aac44bd55dd1f",
       "funderTx": "0xb5a5215482c7cade369d789258eb4da375a32d62aa0392d669e56256d6d36ed8",
       "funderBlock": 124103796,
@@ -467,13 +516,19 @@
       "codeBytes": 0,
       "firstActivityBlock": 124103796,
       "operatorControlProved": false,
-      "note": "empty code at the pin; first end-state activity block; normal transfer",
+      "note": "Candidate sender only. This is not a proved lifetime first funder. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a successful transaction has no call trace; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing",
+      "captureCoverage": "observed",
+      "lifetimePremiseJustified": false,
+      "lifetimeFirstProved": false,
+      "lifetimeAbsenceProved": false,
+      "blockCoverageComplete": false,
+      "candidateLimit": "Candidate sender only. This is not a proved lifetime first funder. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a successful transaction has no call trace; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing",
       "bnb": "0.000066161600000000"
     },
     {
       "role": "recipient",
       "address": "0x97cd18b8bbb629b17675d868259ea84c0a2a5a9c",
-      "coverage": "absent",
+      "coverage": "lifetime-unknown",
       "funder": null,
       "funderTx": null,
       "funderBlock": null,
@@ -485,12 +540,18 @@
       "codeBytes": 0,
       "firstActivityBlock": null,
       "operatorControlProved": false,
-      "note": "empty code, nonce 0, and balance 0 at the pin; an EOA cannot have spent a prior BNB credit without increasing nonce"
+      "note": "No candidate transfer was saved. Empty code, balance, and nonce at the pin do not prove lifetime absence. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim.",
+      "captureCoverage": "absent",
+      "lifetimePremiseJustified": false,
+      "lifetimeFirstProved": false,
+      "lifetimeAbsenceProved": false,
+      "blockCoverageComplete": false,
+      "candidateLimit": "No candidate transfer was saved. Empty code, balance, and nonce at the pin do not prove lifetime absence. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim."
     },
     {
       "role": "recipient",
       "address": "0xa21fc88bd8c17cae306089d7b00a1f5cd5ad3ee9",
-      "coverage": "observed",
+      "coverage": "lifetime-unknown",
       "funder": "0xca7ded7e4f4ba8ab3b10009236ae6d1b95094589",
       "funderTx": "0x322f5447e749887d2ea22c54536959d2a9f06890005c0ac2306d368e265c5840",
       "funderBlock": 128955356,
@@ -502,13 +563,19 @@
       "codeBytes": 0,
       "firstActivityBlock": 128955356,
       "operatorControlProved": false,
-      "note": "empty code at the pin; first end-state activity block; normal transfer",
+      "note": "Candidate sender only. This is not a proved lifetime first funder. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a successful transaction has no call trace; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing",
+      "captureCoverage": "observed",
+      "lifetimePremiseJustified": false,
+      "lifetimeFirstProved": false,
+      "lifetimeAbsenceProved": false,
+      "blockCoverageComplete": false,
+      "candidateLimit": "Candidate sender only. This is not a proved lifetime first funder. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a successful transaction has no call trace; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing",
       "bnb": "0.000164397936681007"
     },
     {
       "role": "recipient",
       "address": "0xabc2c3daffa4c1963299da225c25f2aa7d4ddf62",
-      "coverage": "absent",
+      "coverage": "lifetime-unknown",
       "funder": null,
       "funderTx": null,
       "funderBlock": null,
@@ -520,12 +587,18 @@
       "codeBytes": 0,
       "firstActivityBlock": null,
       "operatorControlProved": false,
-      "note": "empty code, nonce 0, and balance 0 at the pin; an EOA cannot have spent a prior BNB credit without increasing nonce"
+      "note": "No candidate transfer was saved. Empty code, balance, and nonce at the pin do not prove lifetime absence. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim.",
+      "captureCoverage": "absent",
+      "lifetimePremiseJustified": false,
+      "lifetimeFirstProved": false,
+      "lifetimeAbsenceProved": false,
+      "blockCoverageComplete": false,
+      "candidateLimit": "No candidate transfer was saved. Empty code, balance, and nonce at the pin do not prove lifetime absence. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim."
     },
     {
       "role": "recipient",
       "address": "0xca58696564492ef9c3229c89072365b253bda246",
-      "coverage": "observed",
+      "coverage": "lifetime-unknown",
       "funder": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
       "funderTx": "0x87443eff758296585f6d6eb7b68800ea6c73f143239e60541a6ef5b1f072d456",
       "funderBlock": 130097514,
@@ -537,13 +610,19 @@
       "codeBytes": 0,
       "firstActivityBlock": 130097514,
       "operatorControlProved": false,
-      "note": "empty code at the pin; first end-state activity block; normal transfer",
+      "note": "Candidate sender only. This is not a proved lifetime first funder. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a successful transaction has no call trace; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing",
+      "captureCoverage": "observed",
+      "lifetimePremiseJustified": false,
+      "lifetimeFirstProved": false,
+      "lifetimeAbsenceProved": false,
+      "blockCoverageComplete": false,
+      "candidateLimit": "Candidate sender only. This is not a proved lifetime first funder. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a successful transaction has no call trace; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing",
       "bnb": "0.000500000000000000"
     },
     {
       "role": "recipient",
       "address": "0xdf4ff9d2f45f99f11a90b16f277d4b7edddb72a5",
-      "coverage": "absent",
+      "coverage": "lifetime-unknown",
       "funder": null,
       "funderTx": null,
       "funderBlock": null,
@@ -555,12 +634,18 @@
       "codeBytes": 0,
       "firstActivityBlock": null,
       "operatorControlProved": false,
-      "note": "empty code, nonce 0, and balance 0 at the pin; an EOA cannot have spent a prior BNB credit without increasing nonce"
+      "note": "No candidate transfer was saved. Empty code, balance, and nonce at the pin do not prove lifetime absence. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim.",
+      "captureCoverage": "absent",
+      "lifetimePremiseJustified": false,
+      "lifetimeFirstProved": false,
+      "lifetimeAbsenceProved": false,
+      "blockCoverageComplete": false,
+      "candidateLimit": "No candidate transfer was saved. Empty code, balance, and nonce at the pin do not prove lifetime absence. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim."
     },
     {
       "role": "recipient",
       "address": "0xfb200657f7266157a45dfcc6c09690726daa24e6",
-      "coverage": "observed",
+      "coverage": "lifetime-unknown",
       "funder": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
       "funderTx": "0xa3d7042983f4f2352b9b8f324414688db10887e2b2b2a125deca9a8bec6624e7",
       "funderBlock": 126835408,
@@ -572,13 +657,19 @@
       "codeBytes": 0,
       "firstActivityBlock": 126835408,
       "operatorControlProved": false,
-      "note": "empty code at the pin; first end-state activity block; normal transfer",
+      "note": "Candidate sender only. This is not a proved lifetime first funder. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a successful transaction has no call trace; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing",
+      "captureCoverage": "observed",
+      "lifetimePremiseJustified": false,
+      "lifetimeFirstProved": false,
+      "lifetimeAbsenceProved": false,
+      "blockCoverageComplete": false,
+      "candidateLimit": "Candidate sender only. This is not a proved lifetime first funder. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a successful transaction has no call trace; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing",
       "bnb": "0.000500000000000000"
     },
     {
       "role": "recipient",
       "address": "0xfdf05af8ddce3621f01713e01721d6e9ad702ea8",
-      "coverage": "absent",
+      "coverage": "lifetime-unknown",
       "funder": null,
       "funderTx": null,
       "funderBlock": null,
@@ -590,12 +681,18 @@
       "codeBytes": 0,
       "firstActivityBlock": null,
       "operatorControlProved": false,
-      "note": "empty code, nonce 0, and balance 0 at the pin; an EOA cannot have spent a prior BNB credit without increasing nonce"
+      "note": "No candidate transfer was saved. Empty code, balance, and nonce at the pin do not prove lifetime absence. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim.",
+      "captureCoverage": "absent",
+      "lifetimePremiseJustified": false,
+      "lifetimeFirstProved": false,
+      "lifetimeAbsenceProved": false,
+      "blockCoverageComplete": false,
+      "candidateLimit": "No candidate transfer was saved. Empty code, balance, and nonce at the pin do not prove lifetime absence. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim."
     },
     {
       "role": "treasury",
       "address": "0x7c34e9e21ee28a49ff0b84b61774119e6633359f",
-      "coverage": "observed",
+      "coverage": "lifetime-unknown",
       "funder": "0x5ba434b40be6cfc7033bf8d4545320fa609a4268",
       "funderTx": "0xe0f7aeeedd38558ba63a596b8eb6b73e53af63d6282fc3e370160f3b2109bfd0",
       "funderBlock": 123473817,
@@ -607,7 +704,13 @@
       "codeBytes": 0,
       "firstActivityBlock": 123473817,
       "operatorControlProved": false,
-      "note": "empty code at the pin; first end-state activity block; normal transfer",
+      "note": "Candidate sender only. This is not a proved lifetime first funder. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a successful transaction has no call trace; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing",
+      "captureCoverage": "observed",
+      "lifetimePremiseJustified": false,
+      "lifetimeFirstProved": false,
+      "lifetimeAbsenceProved": false,
+      "blockCoverageComplete": false,
+      "candidateLimit": "Candidate sender only. This is not a proved lifetime first funder. End-of-block code does not prove ordinary-account history, even when every sampled block is empty and the map has no gaps. A contract can be created, funded, and SELFDESTRUCT in one transaction. EIP-6780 specification item 2 preserves deletion when that contract is created in the same transaction, so code, nonce, and balance can be empty at every sampled block boundary. Account creation in that EIP begins at a create transaction or at the start of a CREATE-series operation. This limit is not a claim that a captured recipient used that pattern, and it is not a BSC fork-version claim. a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a successful transaction has no call trace; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing; a transaction receipt is missing",
       "bnb": "0.126380710000000000"
     }
   ],
