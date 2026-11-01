@@ -1,3 +1,4 @@
+.gitignore
 FILES.txt
 LICENSE
 NEXT.md
