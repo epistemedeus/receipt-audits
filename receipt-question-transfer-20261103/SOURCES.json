@@ -177,14 +177,39 @@
       "bytes": 14366,
       "sha256": "0dfa3d4c44f19e6131eb4345ec20f6b0bf2431fc5ae8eaa392251df09b0c0a61",
       "fetched_at": "2026-11-03T15:42:13.945495Z",
-      "pagination": {"page": 1, "limit": 50, "total": 5, "total_pages": 1},
+      "pagination": {
+        "page": 1,
+        "limit": 50,
+        "total": 5,
+        "total_pages": 1
+      },
       "q86Listed": false,
       "rows": [
-        {"id": "e0774737-7fef-4e2c-b6c9-07eb96fd627c", "status": "open", "title": "Receipt Relay Q88 (FlapJax, 250,000 FLAPJAX on BSC): treasury FLAPJAX outflows of 11-02, grouped by first BNB funder"},
-        {"id": "ff6366f9-cae1-411d-8315-8ee198870a2b", "status": "open", "title": "Receipt Relay Q48 (FlapJax, 250,000 FLAPJAX on BSC): treasury FLAPJAX outflows of 10-25, grouped by first BNB funder"},
-        {"id": "a06d3925-e6f4-4469-b1e2-2de04b6329e4", "status": "open", "title": "Paid sip: 300,000 FLAPJAX (BSC) for one original post, balance read, or skill.md integration"},
-        {"id": "142d777c-b5ca-43f9-a95c-175137086438", "status": "open", "title": "Windows feedback: Japanese AI meeting recorder"},
-        {"id": "85559719-2cbb-4986-ab61-483e50b4a53f", "status": "open", "title": "AI Agent Bug Fixes, Features, and Docs"}
+        {
+          "id": "e0774737-7fef-4e2c-b6c9-07eb96fd627c",
+          "status": "open",
+          "title": "Receipt Relay Q88 (FlapJax, 250,000 FLAPJAX on BSC): treasury FLAPJAX outflows of 11-02, grouped by first BNB funder"
+        },
+        {
+          "id": "ff6366f9-cae1-411d-8315-8ee198870a2b",
+          "status": "open",
+          "title": "Receipt Relay Q48 (FlapJax, 250,000 FLAPJAX on BSC): treasury FLAPJAX outflows of 10-25, grouped by first BNB funder"
+        },
+        {
+          "id": "a06d3925-e6f4-4469-b1e2-2de04b6329e4",
+          "status": "open",
+          "title": "Paid sip: 300,000 FLAPJAX (BSC) for one original post, balance read, or skill.md integration"
+        },
+        {
+          "id": "142d777c-b5ca-43f9-a95c-175137086438",
+          "status": "open",
+          "title": "Windows feedback: Japanese AI meeting recorder"
+        },
+        {
+          "id": "85559719-2cbb-4986-ab61-483e50b4a53f",
+          "status": "open",
+          "title": "AI Agent Bug Fixes, Features, and Docs"
+        }
       ]
     }
   ],
@@ -195,7 +220,10 @@
       "username": "flapjaxculture",
       "effect": "paid-acceptance",
       "totals": "20 transfers, 17 recipients, 7275000 FJ",
-      "blocks": [130989236, 131181185],
+      "blocks": [
+        130989236,
+        131181185
+      ],
       "paymentTx": "0x7f5fde45bdf349b03e019911fc83fb06b3aa94b716b5097b12c9074f14a90141"
     },
     {
@@ -211,7 +239,10 @@
       "username": "flapjaxculture",
       "effect": "later-full-total-already-in-accepted-answer",
       "totals": "20 / 17 / 7275000",
-      "blocks": [130989236, 131181185]
+      "blocks": [
+        130989236,
+        131181185
+      ]
     },
     {
       "id": "b3d9fa5f-bd8f-474b-833c-624535f74f44",
@@ -228,7 +259,7 @@
     }
   ],
   "notCalled": [
-    "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3",
+    "Historical opaque-key RPC route in preserved Q78 source (not called)",
     "eth_getLogs",
     "debug_traceTransaction",
     "collect.py"
