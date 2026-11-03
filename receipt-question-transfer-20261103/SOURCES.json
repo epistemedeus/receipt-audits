@@ -1,0 +1,273 @@
+{
+  "disposition": "covered-outflow-no-fit",
+  "readAt": "2026-11-03T15:42:12.314458Z",
+  "task": {
+    "id": "0xd87150b00606b1f9aeea70e9031ed83e74c6ff1c167b77e5baf3b334815ee49c",
+    "referenceCode": "TSK-Y8ZWGHP4",
+    "listingChainId": 8453,
+    "auditChainId": 56,
+    "status": "open",
+    "awardCount": 0,
+    "submissionCount": 37,
+    "submissionWindowOpen": true,
+    "reward": "1000000",
+    "netReward": "1000000",
+    "escrowBooked": "1000000",
+    "createdAt": "2026-11-02T15:04:43.885Z",
+    "expiryTime": "2026-11-05T15:04:42.216Z",
+    "requester": "0x506C465C64920E1Fa9adE703ffCd87118354d026",
+    "requesterAgentId": "99246",
+    "treasury": "0x7C34E9e21eE28A49Ff0b84B61774119E6633359f",
+    "token": "0x90c8889f428F9Ebb77BB8f15CAD3a50a9aC680df",
+    "day": "2026-11-01 COT (UTC-5)",
+    "descriptionSha256": "6b45d533ec92b07dfb0dca78a66e5c5e14135ade00e84ed33082cf8bba953d9c",
+    "priorBodySha256": "e062a6f46d4a6f6a9b410bdbb32397fe8779639bad3f2dc1bdd6580967992a0e",
+    "priorBodyReadAt": "2026-11-03T14:25:51Z"
+  },
+  "windowHeaders": {
+    "url": "https://bsc-dataseed.bnbchain.org",
+    "method": "eth_getBlockByNumber",
+    "chainId": "0x38",
+    "readAt": "2026-11-03T15:46:11.003320Z",
+    "blocks": [
+      {
+        "number": 130989235,
+        "timestamp": 1793509199,
+        "cot": "2026-10-31T23:59:59-05:00",
+        "hash": "0x8fd28586680c7cf08dd77e0cdc34f4569d79e3cb5e78d10954445a293b5bd851"
+      },
+      {
+        "number": 130989236,
+        "timestamp": 1793509200,
+        "cot": "2026-11-01T00:00:00-05:00",
+        "hash": "0x67c3ca90556c2d35ab6d8a49587d35c483378e8f7a4552d9274c10b67f449839",
+        "parentHash": "0x8fd28586680c7cf08dd77e0cdc34f4569d79e3cb5e78d10954445a293b5bd851"
+      },
+      {
+        "number": 131181185,
+        "timestamp": 1793595599,
+        "cot": "2026-11-01T23:59:59-05:00",
+        "hash": "0x4e3afa9dfce8f2d6594755f2925912051e137aabc14175950c60fe4d1ed9614c"
+      },
+      {
+        "number": 131181186,
+        "timestamp": 1793595600,
+        "cot": "2026-11-02T00:00:00-05:00",
+        "hash": "0x456f99329ef39271bb88752bad83766e644eee19256ac7850ab2fc1164a54314",
+        "parentHash": "0x4e3afa9dfce8f2d6594755f2925912051e137aabc14175950c60fe4d1ed9614c"
+      }
+    ]
+  },
+  "namedReceiptHeaders": {
+    "url": "https://bsc-dataseed.bnbchain.org",
+    "method": "eth_getBlockByNumber",
+    "note": "Serial follow-up after the 15:46:11Z edge read. HTTP 200. No logs.",
+    "blocks": [
+      {
+        "number": 131065404,
+        "timestamp": 1793543487,
+        "cot": "2026-11-01T09:31:27-05:00",
+        "hash": "0x5686e7b29ffd12e369e7b6842628945f1f9c3f32384e2634822d4cf14af144d6",
+        "inside1101": true,
+        "claimTx": "0x2ea7690215e467790b3ddf40a56b16c2696ad43f711ec115d1ba5e1509af1a73",
+        "class": "native-bnb-send"
+      },
+      {
+        "number": 131099021,
+        "timestamp": 1793558618,
+        "cot": "2026-11-01T13:43:38-05:00",
+        "hash": "0xba35caa9c31ab43c14e63f3e9978deb3e289585626b30c63a5274abd1cc6f2a3",
+        "inside1101": true,
+        "claimTx": "0xaffae79f5effdc146af3e62a66dbc01e222c12cdc8b6c297400f9f12bb7313f2",
+        "class": "flapjax-inflow"
+      },
+      {
+        "number": 131188162,
+        "timestamp": 1793598740,
+        "cot": "2026-11-02T00:52:20-05:00",
+        "hash": "0x6332f579b5407bfdb9c5cab510c7a63655a101d62ccf108a72805e4665fc214a",
+        "inside1101": false,
+        "claimTx": "0xf46eb9f27830ccb8806b586a1a80eb25e99a906b93b03561d49aa5cae82dbd51",
+        "class": "after-day"
+      }
+    ]
+  },
+  "reads": [
+    {
+      "role": "task",
+      "url": "https://api.taskmarket.dev/api/tasks/0xd87150b00606b1f9aeea70e9031ed83e74c6ff1c167b77e5baf3b334815ee49c",
+      "status": 200,
+      "bytes": 9231,
+      "sha256": "c019a77ec30fe1639c81ef9473fdc6f3c7b8296007b61f70905be31799ed1e1a",
+      "fetched_at": "2026-11-03T15:42:12.314458Z"
+    },
+    {
+      "role": "submissions",
+      "url": "https://api.taskmarket.dev/api/tasks/0xd87150b00606b1f9aeea70e9031ed83e74c6ff1c167b77e5baf3b334815ee49c/submissions",
+      "status": 200,
+      "bytes": 63641,
+      "sha256": "a9fa40807f13fb444e6a3f761476fac1c2a753777260a3947bb1051294a66c92",
+      "fetched_at": "2026-11-03T15:42:13.468056Z",
+      "count": 37,
+      "workerAddresses": 34,
+      "rejectedAtNull": 37,
+      "acceptedAtFieldPresent": false,
+      "checksNonempty": 0,
+      "signaturesStored": false
+    },
+    {
+      "role": "colony-post",
+      "url": "https://thecolony.ai/api/v1/posts/93478c56-866a-47e0-a5f4-40c1d3dd5ef0",
+      "status": 200,
+      "bytes": 11547,
+      "sha256": "57bf79bf35d75fdb6813cf677b2d32ae9dd3c78af28bb4800c12364c4eeaf7fc",
+      "fetched_at": "2026-11-03T15:42:13.677432Z",
+      "title": "Daily Audit Drop #22 (Q68): fourteen 0.01 BNB buy receipts: what don't they tell a stranger?",
+      "comment_count": 62,
+      "author": "flapjaxculture"
+    },
+    {
+      "role": "colony-comments",
+      "url": "https://thecolony.ai/api/v1/posts/93478c56-866a-47e0-a5f4-40c1d3dd5ef0/comments?page=1",
+      "status": 200,
+      "bytes": 32924,
+      "sha256": "a0683c7d31c844449964a5e9cf491185817a7a480f2173b01ebfbd7fe1bdd6a5",
+      "fetched_at": "2026-11-03T15:43:07.360804Z",
+      "items": 20,
+      "total": 62,
+      "has_more": true
+    },
+    {
+      "role": "colony-comments",
+      "url": "https://thecolony.ai/api/v1/posts/93478c56-866a-47e0-a5f4-40c1d3dd5ef0/comments?page=2",
+      "status": 200,
+      "bytes": 42490,
+      "sha256": "a2a3b66c0d5a99ab780986c02d4c5ebb484c1df81abbfb7607811da6d304f72b",
+      "fetched_at": "2026-11-03T15:43:07.822741Z",
+      "items": 20,
+      "total": 62,
+      "has_more": true
+    },
+    {
+      "role": "colony-comments",
+      "url": "https://thecolony.ai/api/v1/posts/93478c56-866a-47e0-a5f4-40c1d3dd5ef0/comments?page=3",
+      "status": 200,
+      "bytes": 36741,
+      "sha256": "54962a76037cf5d560ea0683e455076e95fe336a77e42c739c3a27936f30e395",
+      "fetched_at": "2026-11-03T15:43:08.077397Z",
+      "items": 20,
+      "total": 62,
+      "has_more": true
+    },
+    {
+      "role": "colony-comments",
+      "url": "https://thecolony.ai/api/v1/posts/93478c56-866a-47e0-a5f4-40c1d3dd5ef0/comments?page=4",
+      "status": 200,
+      "bytes": 3624,
+      "sha256": "e9485b882144833c78c8e7c3dca916f14ed8cf69930d3ee28347b0c68952f427",
+      "fetched_at": "2026-11-03T15:43:08.448882Z",
+      "items": 2,
+      "total": 62,
+      "has_more": false
+    },
+    {
+      "role": "ugig-open-index",
+      "url": "https://ugig.net/api/bounties",
+      "status": 200,
+      "bytes": 14366,
+      "sha256": "0dfa3d4c44f19e6131eb4345ec20f6b0bf2431fc5ae8eaa392251df09b0c0a61",
+      "fetched_at": "2026-11-03T15:42:13.945495Z",
+      "pagination": {
+        "page": 1,
+        "limit": 50,
+        "total": 5,
+        "total_pages": 1
+      },
+      "q86Listed": false,
+      "rows": [
+        {
+          "id": "e0774737-7fef-4e2c-b6c9-07eb96fd627c",
+          "status": "open",
+          "title": "Receipt Relay Q88 (FlapJax, 250,000 FLAPJAX on BSC): treasury FLAPJAX outflows of 11-02, grouped by first BNB funder"
+        },
+        {
+          "id": "ff6366f9-cae1-411d-8315-8ee198870a2b",
+          "status": "open",
+          "title": "Receipt Relay Q48 (FlapJax, 250,000 FLAPJAX on BSC): treasury FLAPJAX outflows of 10-25, grouped by first BNB funder"
+        },
+        {
+          "id": "a06d3925-e6f4-4469-b1e2-2de04b6329e4",
+          "status": "open",
+          "title": "Paid sip: 300,000 FLAPJAX (BSC) for one original post, balance read, or skill.md integration"
+        },
+        {
+          "id": "142d777c-b5ca-43f9-a95c-175137086438",
+          "status": "open",
+          "title": "Windows feedback: Japanese AI meeting recorder"
+        },
+        {
+          "id": "85559719-2cbb-4986-ab61-483e50b4a53f",
+          "status": "open",
+          "title": "AI Agent Bug Fixes, Features, and Docs"
+        }
+      ]
+    }
+  ],
+  "issuerDecisions": [
+    {
+      "id": "a34128d7-b96c-442a-9815-461ba7d835ff",
+      "created_at": "2026-11-02T15:29:17.463915Z",
+      "username": "flapjaxculture",
+      "effect": "paid-acceptance",
+      "totals": "20 transfers, 17 recipients, 7275000 FJ",
+      "blocks": [
+        130989236,
+        131181185
+      ],
+      "paymentTx": "0x7f5fde45bdf349b03e019911fc83fb06b3aa94b716b5097b12c9074f14a90141"
+    },
+    {
+      "id": "d74f7b65-9bb4-4091-b243-4ee37df4f913",
+      "created_at": "2026-11-02T15:32:32.195357Z",
+      "username": "flapjaxculture",
+      "effect": "accepted-payment-waiting-on-hold",
+      "totals": "20 transfers, 17 recipients, 7275000 FJ"
+    },
+    {
+      "id": "3a72f603-818f-4246-94cb-09edcca04fbd",
+      "created_at": "2026-11-03T00:44:07.678196Z",
+      "username": "flapjaxculture",
+      "effect": "later-full-total-already-in-accepted-answer",
+      "totals": "20 / 17 / 7275000",
+      "blocks": [
+        130989236,
+        131181185
+      ]
+    },
+    {
+      "id": "b3d9fa5f-bd8f-474b-833c-624535f74f44",
+      "created_at": "2026-11-02T16:32:13.448437Z",
+      "username": "flapjaxculture",
+      "effect": "nonce-604-608-620-called-new-slots-taken"
+    },
+    {
+      "id": "a420fd45-1bf8-4289-aabe-fd41216595b1",
+      "created_at": "2026-11-03T13:58:58.598598Z",
+      "username": "flapjaxculture",
+      "effect": "q87-paid-one-payout-for-post-that-also-carried-q86",
+      "paymentTx": "0x41e9c19b605e3d2acf33170931d37a481585a6c671787faede49ef852dd11633"
+    }
+  ],
+  "notCalled": [
+    "Historical opaque-key RPC route in preserved Q78 source (not called)",
+    "eth_getLogs",
+    "debug_traceTransaction",
+    "collect.py"
+  ],
+  "octoberTests": {
+    "command": "python3 -m unittest test_audit.py",
+    "cwd": "q78-first-funder-20261101",
+    "tests": 21,
+    "exit": 0
+  }
+}
